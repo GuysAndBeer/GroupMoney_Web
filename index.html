@@ -8,26 +8,41 @@
 	<header class="header">
         <div class="container">
             <div class="header__inner">
-                <a href="./index.html" class="header__logo">
+                <a href="./main.html" class="header__logo">
                     SplitwiseClone
                 </a>
-                <div class="lang-menu">
-					<button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"> English</button>
-					<button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"> Russian</button>
-				</div>
-                <nav id="authorisation">
-                    <a class="nav__link" href="./login.html">Sign In</a>
-                    <a class="nav__link" href="./register.html">Sign Up</a>
-                </nav>
+                <div class="header__items" id="authorisation">
+                    <a href="./login.html">Sign In</a>
+                    <a href="./register.html">Sign Up</a>
+                    <div class="lang-menu">
+                        <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
+                        <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+                    </div>
+                </div>
             </div>
+            <div class="line"></div>
         </div>
     </header>
-
-	<p data-translate="greet" style="text-align: center; margin: 10px;" >To start with splitapp firts sign in </p>
-    <a data-translate="login" style="position: absolute; left: 50%; margin: 10px;" class="nav__link" href="./login.html">Sign In</a>
+    <main class="main">
+        <div class="info">
+            <div class="info__item">
+                <p data-translate="greet">To start with splitapp firts sign in </p>
+            </div>
+            <div class="info__item">
+                <a class="info-login" data-translate="login" href="./login.html">Sign In</a>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__title">Guys and Beer 2021</div>
+                <div class="footer__info">@Copyright reserved</div>
+            </div>
+        </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/translate.js"></script>
-
 </body>
 </html>
 

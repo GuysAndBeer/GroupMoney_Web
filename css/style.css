@@ -183,11 +183,17 @@
     align-items: center;
     text-transform: uppercase;
     font-size: 16px;
+	background-color: #404040;
 }
 
 .tab_name, .tab_name2, .tab_name3, .tab_name4{
 	position: relative;
 	z-index: 2;
+	color: white;
+	font-weight: 600;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 5px;
 }
 
 .tabs_unactive{
@@ -211,38 +217,38 @@
 }
 
 .tabs__block:nth-child(1){
-	background-color: #eb8698;
+	background-color: #474747;
 }
 
 .tabs__block:nth-child(1)::before{
-	background-color: #eb8698;
+	background-color: #474747;
 	left: 0;		
 }
 
 .tabs__block:nth-child(2){
-	background-color: #9278aa;
+	background-color: #474747;
 }
 
 .tabs__block:nth-child(2)::before{
-	background-color: #9278aa;
+	background-color: #474747;
 	left: 25%;
 }
 
 .tabs__block:nth-child(3){
-	background-color: #97c67d;
+	background-color: #474747;
 }
 
 .tabs__block:nth-child(3)::before{
-	background-color: #97c67d;
+	background-color: #474747;
 	left: 50%;
 }
 
 .tabs__block:nth-child(4){
-	background-color: brown;
+	background-color: #474747;
 }
 
 .tabs__block:nth-child(4)::before{
-	background-color: brown;
+	background-color: #474747;
 	right: 0;
 }
 
@@ -252,9 +258,10 @@
 }
 
 .tabs__block p button{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	color: #404040;
 	padding: 15px 32px;
 	text-align: center;
 	text-decoration: none;
@@ -263,11 +270,12 @@
 }
 
 .tabs__block p button:hover{
-	background: #3bd62b;
+	cursor: pointer;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 .tabs__block .activity{
-	color: #2E8B57;
+	color: white;
 }
 
 .text{
@@ -359,22 +367,24 @@
 
 .view_item .btn_edit, .btn_delete{
 	width: 125px;
-	background: #4abd3e;
+	background: #404040;
 	color: #fff;
-	border-radius: 3px;
+	border: 1px solid #404040;
+	border-radius: 5px;
 	padding: 8px 5px;
 	text-align: center;
 	font-weight: 200;
 	cursor: pointer;
 	display: inline-block;
+	margin-right: 20px;
 }
 
 .view_item .btn_edit:hover{
-	background: #3bd62b;
+	background: #227519;
 }
 
 .view_item .btn_delete{
-	background: #FF0000;
+	background: #404040;
 }
 
 .view_item .btn_delete:hover{
@@ -398,7 +408,7 @@
 	align-items: center;
 	visibility: hidden;
 	opacity: 0;
-	transition: visibility 0s, opacity 0.5s;
+	transition: visibility 0s, opacity 1s;
 }
 
 
@@ -417,400 +427,144 @@
 	visibility: visible;
 }
 
-.modal, .member_modal{
+.modal{
 	position: relative;
 	background-color: white;
-	width: 30%;
-	height: 50%;
+	border: 1px solid #404040;
+	border-radius: 10px;
+	width: 50%;
+	height: 80vh;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	flex-direction: column;
-}
-
-.modal-bg .split_modal{
-	position: relative;
-	background-color: white;
-	width: 30%;
-	height: 40%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column;
-	margin: 1px;
-}
-
-.split_modal .title{
-	font-size: 16px;
-}
-
-.split_modal .save {
-	position: absolute;
-	top: 90%;
-	left: 1px;
-}
-
-
-
-.modal .save{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 7px 15px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-	position: absolute;
-	left: 10px;
-	top: 90%;
-}
-
-.modal .title{
-	position: absolute;
-	top: 1%;
-	left: 10px;
-	font-family: bold;
-	color: black;
-}
-
-
-.modal .name{
-	position: absolute;
-	top: 10%;
-	left: 10px;
-	color: red;
-}
-
-.modal .name-select{
-	position: absolute;
-	top: 17%;
-	left: 10px;
-	width: 160px;
-  	height: 36px;
-  	line-height: 30px;
-}
-
-.modal .name-select:after{
-	content: "";
-	border-style: solid;
-	border-width: 6px 5px 0 5px;
-	border-color: #000 transparent transparent transparent; 
-
-	position: absolute;
-	top: 24%;
-	right: 1rem;
-	z-index: 1;
-}
-
-.modal .name-select select{
-	display: block;
-	width: 100%;
-	background: none;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	-webkit-appearance: none;
-	appearance: none;
-	font-family: inherit;
-	font-size: 1rem;
-	color: #444;
-
-}
-
-.modal .amount{
-	position: absolute;
-	top: 25%;
-	left: 10px;
-	color: green;
-}
-
-.modal .amount_input{
-	position: absolute;
-	top: 31%;
-	left: 10px;
-}
-
-.modal button:hover{
-	background: #3bd62b;
-}
-
-.modal-close, .modal1-close{
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.modal .concept{
-	position: absolute;
-	top: 37%;
-	left: 10px;
-	color: blue;	
-}
-
-.modal .concept_input{
-	position: absolute;
-	top: 42%;
-	left: 10px;	
-}
-
-.modal .category{
-	position: absolute;
-	top: 48%;
-	left: 10px;
-	color: purple;		
-}
-
-.modal .category-select{
-	position: absolute;
-	top: 53%;
-	left: 10px;		
-}
-
-.modal .shared{
-	position: absolute;
-	top: 59%;
-	left: 10px;
-	color: red;		
-}
-
-.modal .share_equally{
-	position: absolute;
-	top: 65%;
-	left: 10px;
-}
-
-.modal .add_receipt{
-	position: absolute;
-	top: 71%;
-	left: 10px;
-	color: green;
-}
-
-.modal .file{
-	position: absolute;
-	top: 77%;
-	left: 10px;
-}
-
-.modal .button_file{
-	position: absolute;
-	top: 77%;
-	right: 100px;
-	background-color: blue; /* Green */
-	border: none;
-	color: white;
-	padding: 7px 15px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-	cursor: pointer;
-}
-
-
-
-.member_modal h2{
-	position: absolute;
-	top: 0%;
-	left: 10px;
-	font-family: bold;
-	color: black;
-}
-
-.member_modal .member{
-	position: absolute;
-	top: 25%;
-	left: 10px;
-	color: blue;
-}
-
-.member_modal .name_input{
-	position: absolute;
-	top: 40%;
-	left: 10px;
-}
-
-.member_modal .save{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 7px 15px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-	position: absolute;
-	left: 10px;
-	top: 75%;
 }
 
 .member_modal{
-	width: 40%;
-	height: 20%;
-}
-
-.radio{
 	position: relative;
-	margin-bottom: 1rem;
+	background-color: white;
+	border: 1px solid #404040;
+	border-radius: 10px;
+	width: 50%;
+	height: 50vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
 
-.radio__input{
-	-webkit-appearance: none;
-	appearance: none;
+.member_modal *{
+	margin-bottom: 5px;
+}
+.member_modal input{
+	width: 50%;
+	min-height: 30px;
+}
+
+.member_modal button{
 	position: absolute;
-	left: 10px;
+	background-color: #404040;
+	color: white;
+	border: 1px solid #404040;
+	border-radius: 2px;
+	width: 100px;
+	height: 30px;
+	font-weight: 800;
+	margin-bottom: 10px;
+	cursor: pointer;
+	bottom: 10px;
 }
 
-.radio__label{
-	padding-left: 25px;
-	font-size: 1rem;
-	color: #444;
+.split_modal{
+	position: relative;
+	background-color: white;
+	border: 1px solid #404040;
+	border-radius: 10px;
+	width: 30%;
+	height: 30vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 10px;
+	left: 0;
+
+}
+.split_modal .radio{
+	/* display: flex;
+	flex-direction: column; */
+	margin: 5px 0 5px 0;
+}
+.radio > *:not(:last-child){
+	margin-right: 5px;
+}
+
+.split_modal .title{
+	font-size: 28px;
+	margin-bottom: 5px;
+}
+
+
+.split_modal select{
+	width: 100%;
+	min-height: 25px;
+}
+.split_modal button{
+	position: absolute;
+	background-color: #404040;
+	color: white;
+	border: 1px solid #404040;
+	border-radius: 2px;
+	width: 100px;
+	height: 30px;
+	font-weight: 800;
+	margin-bottom: 10px;
+	cursor: pointer;
+	bottom: 10px;
+}
+
+
+.modal .title{
+	font-size: 28px;
+	margin-bottom: 5px;
+}
+
+.modal__border{
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #404040;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 24px;
+}
+
+.modal__border select{
+	width: 100%;
+	min-height: 25px;
+}
+
+.modal__border input{
+	width: 100%;
+	min-height: 20px;
+	margin-top: 5px;
+}
+
+.modal__border button{
+	background-color: #404040;
+	color: white;
+	border: 1px solid #404040;
+	border-radius: 2px;
+	height: 30px;
+	font-weight: 800;
+	margin-bottom: 10px;
 	cursor: pointer;
 }
 
-.radio__label:before{
-	content: "";
-	display: block;
-	width: 16px;
-	height: 16px;
-
-	border: 1px solid #ccc;
-	background-color: #fff;
-	border-radius: 50%;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-
-	transition: background .1s linear, border .1s linear;
-}
-
-.radio__label:after{
-	content: "";
-	display: block;
-	width: 12px;
-	height: 12px;
-
-	background-color: #49d120;
-	border-radius: 50%;
-
-	opacity: 0;
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	z-index: 2;
-}
-
-.radio__input:checked + .radio__label:before{
-	border-color: #319612; 
-}
-
-.radio__input:unchecked + .radio__label:before{
-	border-color: #fff; 
-}
-
-.radio__input:checked + .radio__label:after{
-	opacity: 1;
-}
-
-.radio__input:unchecked + .radio__label:after{
-	opacity: 1;
-}
-
-.modal-bg .split_modal .save{
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 7px 15px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-}
-
-@media only screen
-    and (max-device-width : 500px) {
-
-    :root {
-      --main-border-radius: 50px;
-    }
-
-    .expense_amount{
-    	display: inline-block;
-    	position: flex;
-		right: 0;
-		width: 90px;
-		height: 10px;
-		color: green;
-		font-size: 25px;
-		font-family: bold;
-    }
-
-    .vi_right .img{
-    	display: flex;
-		position: absolute;
-		padding: 35px;
-		right: 5%;
-		width: 50px;
-		height: 50px;
-		cursor: pointer;
-	}
-
-	.view_item .amount, .neg_amount {
-    	position: absolute;
-		right: 0;
-		width: 90px;
-		height: 10px;
-		color: green;
-		font-size: 25px;
-		font-family: bold;
-	}
-
-	.member_modal{
-		width: 50%;
-		height: 43%;
-	}
-
-	.member_modal .name_input{
-		position: absolute;
-		top: 45%;
-		left: 10px;
-	}
-
-	.modal{
-		position: absolute;
-		background-color: white;
-		top: 10%;
-		width: 100%;
-		height: 90%;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		flex-direction: column;
-	}
-
-	.modal-bg .split_modal{
-		position: absolute;
-		top: 12%;
-		right: 5%;
-		background-color: white;
-		width: 30%;
-		height: 40%;
-
-	}
-
-	.modal-bg .split_modal .save {
-		visibility: hidden;
-	}
-
-	.modal-bg .split_modal .modal-close {
-		visibility: hidden;
-	}
+.file{
+	margin-bottom: 5px;
 }
 
 
-
-
-
+.modal-close, .modal1-close{
+	cursor: pointer;
+}
 
 
 

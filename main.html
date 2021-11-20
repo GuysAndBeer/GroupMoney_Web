@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Main</title>
 </head>
 <body>
 	<header class="header">
@@ -36,14 +36,13 @@
 				</div>
 			</div>
 		</div>
-	
 		<div class="container">
 			<div class="tabs">
 				<nav class="tabs__items">
-					<button class="tabs_item" onclick="openOption(event, 'tab_01')"><span class="tab_name" data-translate="expenses">Expenses</span></button>
-					<button class="tabs_item" onclick="openOption(event, 'tab_02')"><span class="tab_name2" data-translate="debts">Debts</span></a>
-					<button class="tabs_item" onclick="openOption(event, 'tab_03')"><span class="tab_name3" data-translate="members">Members</span></a>
-					<button class="tabs_item" onclick="openOption(event, 'tab_04')"><span class="tab_name4" data-translate="activity">Activity</span></a>
+					<button id="expenses_tab" class="tabs_item" onclick="openOption(event, 'tab_01')"><span class="tab_name" data-translate="expenses">Expenses</span></button>
+					<button id="debts_tab" class="tabs_item" onclick="openOption(event, 'tab_02')"><span class="tab_name2" data-translate="debts">Debts</span></a>
+					<button id="members_tab" class="tabs_item" onclick="openOption(event, 'tab_03')"><span class="tab_name3" data-translate="members">Members</span></a>
+					<button id="activity_tab" class="tabs_item" onclick="openOption(event, 'tab_04')"><span class="tab_name4" data-translate="activity">Activity</span></a>
 				</nav>
 				<div class="tabs__body">
 					<div id="tab_01" class="tabs__block">
@@ -74,45 +73,42 @@
 					</div>
 				</div>
 			</div>
-	
-			<div class="text">Chooose option</div>
 		</div>
-	
 		<div class="modal-bg">
 			<div class="modal">
 				<h2 class="title">Add new Expense</h2>
-				<label for="name" class="name">Who paid</label>
-				<div class="name-select" >
-					<select id="member-select">
-			
-					</select>
+				<div class="modal__border">
+					<label for="name" class="name">Who paid</label>
+					<div class="name-select" >
+						<select id="member-select">
+				
+						</select>
+					</div>
+					<label class="amount" for="amount">Amount</label>
+					<input type="value" name="amount" class="amount_input" id="amount" placeholder="0$">
+					<label for="concept" class="concept">Concept</label>
+					<input type="text" name="concept" class="concept_input" id="concept" placeholder="Expense name">
+					<label for="category-select" class="category">Category</label>
+					<div class="category-select">
+						<select id="category-select" >
+							<option value="0">Food</option>
+							<option value="1">Home</option>
+							<option value="2">Tickets</option>
+						</select>
+					</div>
+					<label for="shared" class="shared">Shared</label>
+					<button class="share_equally" id="shared" onclick="split_equally()">SHARE EQUALY</button>
+					<label for="myFile" class="add_receipt">Add Receipt</label>
+					<input type="file" id="myFile" name="filename" class="file">
+					<button class="button_file" id="add_file">Save receipt</btn>
+					<button class="save" id="save_expense">Save</button>
+					<span class="modal-close">X</span>
 				</div>
-				<label class="amount" for="amount">Amount</label>
-				<input type="value" name="amount" class="amount_input" id="amount" placeholder="0$">
-				<label for="concept" class="concept">Concept</label>
-				<input type="text" name="concept" class="concept_input" id="concept" placeholder="Expense name">
-				<label for="category-select" class="category">Category</label>
-				<div class="category-select">
-					<select id="category-select" >
-						<option value="0">Food</option>
-						<option value="1">Home</option>
-						<option value="2">Tickets</option>
-					</select>
-				</div>
-				<label for="shared" class="shared">Shared</label>
-				<button class="share_equally" id="shared" onclick="split_equally()">share equally</button>
-				<label for="myFile" class="add_receipt">Add Receipt</label>
-				<input type="file" id="myFile" name="filename" class="file">
-				<button class="button_file" id="add_file">Save receipt</btn>
-				<button class="save" id="save_expense">Save</button>
-				<span class="modal-close">X</span>
 			</div>
 	
 			<div class="split_modal" id="split_modal">
 				<h2 class="title">Choose split method</h2>
-				
 				<button class="save" >Save</button>
-				<span class="modal-close">X</span>
 			</div>
 	
 		</div>
@@ -126,6 +122,7 @@
 				<span class="modal1-close">X</span>
 			</div>
 		</div>
+
 	</main>
 	<footer class="footer">
         <div class="container">

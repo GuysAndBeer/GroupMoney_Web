@@ -1,3 +1,29 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------
+
 function loadData(){
 	localStorage.setItem("current_id", JSON.stringify(-1))
 	
@@ -331,49 +357,21 @@ function showReceipt(index){
 	window.open(url, "_blank");
 }
 
-function auth(){
-    let user = JSON.parse(localStorage.getItem("current_user"))
-    let groups = JSON.parse(localStorage.getItem("group"))
-    let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-    let group_id = parseInt(current_group_id)
-    let current_group = groups[group_id]
-    let members = current_group.members
-    let users = JSON.parse(localStorage.getItem("users"))
+async function auth(){
+    let current_user = JSON.parse(localStorage.getItem("current_user"))
     let nav = document.getElementById("authorisation")
-    let user_dashboard = document.getElementById("user_dashboard")
-    let budget_dashboard = document.getElementById("budget_dashboard")
-    let budget_income_field = document.getElementById("budget_income")
-    let budget_expenses_field = document.getElementById("budget_expenses")
 
-    let budget_income = parseInt(JSON.parse(localStorage.getItem("budget_income")))
-    let budget_expenses = parseInt(JSON.parse(localStorage.getItem("budget_expenses")))
-
-    if(user === "none"){
+    if(current_user === "none"){
         let a = document.createElement("a")
         a.textContent = "Sign In"
         a.href = "login.html"
         a.className = "nav__link"
         nav.appendChild(a)
-        a = document.createElement("a")
-        a.textContent = "Sign Up"
-        a.href = "register.html"
-        a.className = "nav__link"
-        nav.appendChild(a)
     }else {
-        let username = user
+        let username = current_user
         user_dashboard.textContent = username
-        for(let j = 0; j < members.length; j++){
-            if (username == members[j].name) 
-            {
-                budget_dashboard.textContent = members[j].budget + '$'
-            }
-        }
-        budget_income_field.textContent = budget_income + '$'
-        budget_expenses_field.textContent = budget_expenses + '$'
-        console.log("HERE IS", user)
-        console.log("HERE IS", username)
         let a = document.createElement("a")
-        a.textContent = user
+        a.textContent = username
         a.className = "nav__link"
         nav.appendChild(a)
         a = document.createElement("a")
@@ -382,16 +380,12 @@ function auth(){
         a.className = "nav__link"
         a.onclick = logout
         nav.appendChild(a)
-
     }
-    console.log("CURRENT USER", user)
-    console.log("ALL USERS", users)
-    console.log("groups", groups)
 }
 
 function logout(){
     localStorage.setItem("current_user", JSON.stringify("none"));
 }
 
-loadData()
+
 auth()

@@ -1,23 +1,91 @@
+async function auth(){
+    let current_user = JSON.parse(localStorage.getItem("current_user"))
+    let nav = document.getElementById("authorisation")
+
+    if(current_user === "none"){
+        let a = document.createElement("a")
+        a.textContent = "Sign In"
+        a.href = "login.html"
+        a.className = "nav__link"
+        nav.appendChild(a)
+    }else {
+        let username = current_user
+        user_dashboard.textContent = username
+        let a = document.createElement("a")
+        a.textContent = username
+        a.className = "nav__link"
+        nav.appendChild(a)
+        a = document.createElement("a")
+        a.textContent = "Log out"
+        a.href = "index.html"
+        a.className = "nav__link"
+        a.onclick = logout
+        nav.appendChild(a)
+    }
+}
+
+function logout(){
+    localStorage.setItem("current_user", JSON.stringify("none"));
+}
+
+function loadMembers(){
+    let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let members = groups[group_id].members
+
+    ul = document.getElementById("member-list")
+
+    let i = 0
+
+    for (let member of members) {
+        li = document.createElement("li")
+        li.className = "view_item"
+        div_left = document.createElement("div")
+        div_left.className = "vi_left"
+        div_right = document.createElement("div")
+        div_right.className = "vi_right"
+        let img_person = document.createElement("img")
+        img_person.setAttribute("src", "./img/person.png")
+
+        let p_title = document.createElement("p")
+        p_title.className = 'title'
+        p_title.textContent = member
+
+        p_amount = document.createElement("p")
+
+        if (groups[group_id].netAmt[i] < 0){
+            p_amount.className = "neg_amount"
+        }
+
+        else{
+            p_amount.className = "amount"
+        }
+
+        p_amount.textContent = groups[group_id].netAmt[i].toString() + '$'
+
+        button_delete = document.createElement("button")
+        button_delete.className = "btn_delete"
+        button_delete.textContent = "Delete"
+        button_delete.setAttribute("id", member.id + "delete_member")
+        button_delete.setAttribute("onClick", "delete_member(this.id)")
+
+        div_left.appendChild(img_person)
+        div_right.appendChild(p_title)
+        div_right.appendChild(p_amount)
+        div_right.appendChild(button_delete)
+
+        li.appendChild(div_left)
+        li.appendChild(div_right)
+        ul.appendChild(li)
+        i++
+    }
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+auth()
+loadMembers()
 
 
 
@@ -224,73 +292,73 @@ function loadData(){
         }
     }
 
-    ul = document.getElementById("member-list")
-    
-        for (let member of members) {
-            li = document.createElement("li")
-            li.className = "view_item"
-            div_left = document.createElement("div")
-            div_left.className = "vi_left"
-            div_right = document.createElement("div")
-            div_right.className = "vi_right"
-            let img_person = document.createElement("img")
-
-            let current_user = JSON.parse(localStorage.getItem("current_user"))
-            
-            if (member.name == current_user) {
-                img_person.src = "./img/me.png"
-            }
-
-            else{
-                img_person.src = "./img/person.png"
-            }
-
-            let p_title = document.createElement("p")
-            p_title.className = 'title'
-            p_title.textContent = member.name
-
-            let p_spent = document.createElement("p")
-            p_spent.className = "content"
-            p_spent.textContent = "spent " + member.spent.toString() + '$'
-
-            p_amount = document.createElement("p")
-
-            if (member.budget < 0){
-                p_amount.className = "neg_amount"
-            }
-
-            else{
-                p_amount.className = "amount"
-            }
-
-            p_amount.textContent = member.budget.toString() + '$'
-
-
-            button_edit = document.createElement("button")
-            button_edit.className = "btn_edit"
-            button_edit.textContent = "Edit"
-            button_edit.setAttribute("id", member.id + "edit_member")
-            button_edit.setAttribute("onClick", "edit_member(this.id)")
-
-            button_delete = document.createElement("button")
-            button_delete.className = "btn_delete"
-            button_delete.textContent = "Delete"
-            button_delete.setAttribute("id", member.id + "delete_member")
-            button_delete.setAttribute("onClick", "delete_member(this.id)")
-
-            div_left.appendChild(img_person)
-            div_right.appendChild(p_title)
-            div_right.appendChild(p_spent)
-            div_right.appendChild(p_amount)
-            div_right.appendChild(button_edit)
-            div_right.appendChild(button_delete)
-
-            li.appendChild(div_left)
-            li.appendChild(div_right)
-
-            ul.appendChild(li)
-
-        }
+    // ul = document.getElementById("member-list")
+    //
+    //     for (let member of members) {
+    //         li = document.createElement("li")
+    //         li.className = "view_item"
+    //         div_left = document.createElement("div")
+    //         div_left.className = "vi_left"
+    //         div_right = document.createElement("div")
+    //         div_right.className = "vi_right"
+    //         let img_person = document.createElement("img")
+    //
+    //         let current_user = JSON.parse(localStorage.getItem("current_user"))
+    //
+    //         if (member.name == current_user) {
+    //             img_person.src = "./img/me.png"
+    //         }
+    //
+    //         else{
+    //             img_person.src = "./img/person.png"
+    //         }
+    //
+    //         let p_title = document.createElement("p")
+    //         p_title.className = 'title'
+    //         p_title.textContent = member.name
+    //
+    //         let p_spent = document.createElement("p")
+    //         p_spent.className = "content"
+    //         p_spent.textContent = "spent " + member.spent.toString() + '$'
+    //
+    //         p_amount = document.createElement("p")
+    //
+    //         if (member.budget < 0){
+    //             p_amount.className = "neg_amount"
+    //         }
+    //
+    //         else{
+    //             p_amount.className = "amount"
+    //         }
+    //
+    //         p_amount.textContent = member.budget.toString() + '$'
+    //
+    //
+    //         button_edit = document.createElement("button")
+    //         button_edit.className = "btn_edit"
+    //         button_edit.textContent = "Edit"
+    //         button_edit.setAttribute("id", member.id + "edit_member")
+    //         button_edit.setAttribute("onClick", "edit_member(this.id)")
+    //
+    //         button_delete = document.createElement("button")
+    //         button_delete.className = "btn_delete"
+    //         button_delete.textContent = "Delete"
+    //         button_delete.setAttribute("id", member.id + "delete_member")
+    //         button_delete.setAttribute("onClick", "delete_member(this.id)")
+    //
+    //         div_left.appendChild(img_person)
+    //         div_right.appendChild(p_title)
+    //         div_right.appendChild(p_spent)
+    //         div_right.appendChild(p_amount)
+    //         div_right.appendChild(button_edit)
+    //         div_right.appendChild(button_delete)
+    //
+    //         li.appendChild(div_left)
+    //         li.appendChild(div_right)
+    //
+    //         ul.appendChild(li)
+    //
+    //     }
     
 }
 
@@ -357,35 +425,5 @@ function showReceipt(index){
 	window.open(url, "_blank");
 }
 
-async function auth(){
-    let current_user = JSON.parse(localStorage.getItem("current_user"))
-    let nav = document.getElementById("authorisation")
-
-    if(current_user === "none"){
-        let a = document.createElement("a")
-        a.textContent = "Sign In"
-        a.href = "login.html"
-        a.className = "nav__link"
-        nav.appendChild(a)
-    }else {
-        let username = current_user
-        user_dashboard.textContent = username
-        let a = document.createElement("a")
-        a.textContent = username
-        a.className = "nav__link"
-        nav.appendChild(a)
-        a = document.createElement("a")
-        a.textContent = "Log out"
-        a.href = "index.html"
-        a.className = "nav__link"
-        a.onclick = logout
-        nav.appendChild(a)
-    }
-}
-
-function logout(){
-    localStorage.setItem("current_user", JSON.stringify("none"));
-}
 
 
-auth()

@@ -141,6 +141,7 @@
     margin-bottom: 10px;
 }
 
+
 .budget-value {
     font-size: 46px;
     text-align: center;
@@ -164,6 +165,7 @@
 
 .budget-expenses {
     background-color: #FF5049;
+	margin-bottom: 10px;
 }
 
 .budget-income-title,

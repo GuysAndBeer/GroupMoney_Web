@@ -123,6 +123,7 @@
     position: relative;
 	display: flex;
 	justify-content: center;
+	margin-bottom: 100px;
 }
 
 .budget {
@@ -366,6 +367,22 @@
 	font-size: 18px;
 }
 
+.delete_user, .choose_group{
+	width: 125px;
+	background: #404040;
+	color: #fff;
+	border: 1px solid #404040;
+	border-radius: 5px;
+	padding: 8px 5px;
+	text-align: center;
+	font-weight: 200;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.delete_user:hover{
+	background: #8B0000;
+}
 
 .view_item .btn_edit, .btn_delete{
 	width: 125px;
@@ -569,4 +586,57 @@
 }
 
 
+/* CHO0SE --------------------------*/
 
+.choose__form{
+	margin: 0 auto;
+	background-color: #404040;
+	width: 50%;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.choose__title{
+	color: white;
+	font-size: 24px;
+}
+
+.choose__ul{
+	margin-top: 30px;
+}
+.choose__ul > *:not(:last-child){
+	margin-bottom: 10px;
+}
+
+.choose__li{
+
+}
+.choose__button{
+	background-color: transparent;
+	color: white;
+	border: 1px solid #4d4d4d;
+	width: 80%;
+	height: 50px;
+}
+
+.choose__button:hover{
+	background-color: #303030;
+	cursor: pointer;
+}
+
+.or{
+	margin: 30px 0 30px 0;
+	font-size: 10px;
+}
+
+.green{
+	color: rgb(0, 161, 0);
+}
+
+.buttons__flex{
+	display: flex;
+	justify-content: space-between;
+}

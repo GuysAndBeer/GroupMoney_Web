@@ -614,7 +614,7 @@
 .choose__li{
 
 }
-.choose__button{
+.choosebutton{
 	background-color: transparent;
 	color: white;
 	border: 1px solid #4d4d4d;
@@ -622,7 +622,7 @@
 	height: 50px;
 }
 
-.choose__button:hover{
+.choosebutton:hover{
 	background-color: #303030;
 	cursor: pointer;
 }
@@ -639,4 +639,10 @@
 .buttons__flex{
 	display: flex;
 	justify-content: space-between;
+}
+
+.new_group_input{
+	outline:none;
+	padding-left: 10px;
+	margin-bottom: 10px;
 }

@@ -1,9 +1,9 @@
 class Group{
-	constructor(id, name, expenses, debts, members){
-		this.id = id;
-		this.name = name;
-		this.expenses = expenses;
-		this.debts = debts;
+	constructor(mImageUrl, members, name, netAmt, viewers){
+		this.mImageUrl = mImageUrl;
 		this.members = members;
+		this.name = name;
+		this.netAmt = netAmt;
+		this.viewers = viewers;
 	}
 }

@@ -16,6 +16,7 @@ async function readFirebase (groups){
             count++
         }
     })
+
 }
 
 function checkGroups(groups){
@@ -25,6 +26,7 @@ function checkGroups(groups){
     for (let i=0; i < groups[0].length; i++){
         new_groups[i] = groups[0][i]
     }
+    localStorage.setItem("groups", JSON.stringify(new_groups))
 
     const user = firebase.auth().currentUser;
     name = user.email;
@@ -55,5 +57,5 @@ function selectGroup(index){
 
 
 readFirebase(groups)
-setTimeout(checkGroups, 1200, [groups]);
+setTimeout(checkGroups, 2000, [groups]);
 

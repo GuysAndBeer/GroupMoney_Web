@@ -1,14 +1,14 @@
 function add_expense(){
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let expenses = current_group.expenses
-	let debts = current_group.debts
-	let members = current_group.members
+
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let uploads = []
+    uploads = JSON.parse(localStorage.getItem("uploads"))
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let expenses = []
+    expenses = uploads[group_id].expenses
+    members = groups[group_id].members
+    console.log("uploads", expenses)
 
 	let current_user = JSON.parse(localStorage.getItem("current_user"))
 
@@ -25,7 +25,7 @@ function add_expense(){
 
 	if (expenses.length > 0){
 		id = expenses[expenses.length - 1].id + 1
-		id_debt = debts[debts.length - 1].id + 1
+		//id_debt = debts[debts.length - 1].id + 1
 	}
 
 	let sel=document.getElementById('member-select').selectedIndex;
@@ -59,15 +59,15 @@ function add_expense(){
 	for (let i = 0;i < rad.length; i++) {
     	if (rad[i].checked) {
       		//alert('Выбран ' + i+' radiobutton');
-      		split_users.push(members[i].name)
+      		split_users.push(members)
       		if (document.getElementById("input_" + i).value === ""){
-      			members[i].budget = members[i].budget - parseInt(document.getElementById("input_" + i).placeholder)
-      			debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
+      			groups[group_id].netAmt[i] = groups[group_id].netAmt[i] - parseInt(document.getElementById("input_" + i).placeholder)
+      			//debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
       			sum = sum + parseInt(document.getElementById("input_" + i).placeholder)
       		}
       		else{
-	      		members[i].budget = members[i].budget - parseInt(document.getElementById("input_" + i).value)
-	      		debt_amount.push(parseInt(document.getElementById("input_" + i).value))
+	      		groups[group_id].netAmt[i] = groups[group_id].netAmt[i] - parseInt(document.getElementById("input_" + i).value)
+	      		//debt_amount.push(parseInt(document.getElementById("input_" + i).value))
 	      		sum = sum + parseInt(document.getElementById("input_" + i).value) 
       		}
     	}
@@ -95,10 +95,10 @@ function add_expense(){
   	}
 
   	else{
-  		let expense = new Expense(id, name, amount, concept, category, split_users, receipt)
+  		let expense = new Expense(id, name, amount, concept, category, split_users)
   		expenses.push(expense)
   		let counter = false
-  		for (let i = 0; i < split_users.length; i++){
+  		/*for (let i = 0; i < split_users.length; i++){
   			for (let d of debts){
   				let j = 0
   				if (d.name == split_users[i] && d.nameto == name) {
@@ -131,21 +131,22 @@ function add_expense(){
 	  	if (name == current_user) 
 	  	{
 	  		budget_income += amount
-	  	}
+	  	}*/
 
 	  	for (let j = 0; j < members.length; j++){
-	  		if (members[j].name == name) {
-	  			members[j].budget += amount
-	  			members[j].spent += amount
+	  		if (members[j] == name) {
+	  			groups[group_id].netAmt[j] += amount
 	  		}
 	  	}		
   	}
 
-  	groups[group_id].expenses = expenses
-  	groups[group_id].debts = debts
-  	groups[group_id].members = members
+  	uploads[group_id].expenses = expenses
+  	//groups[group_id].debts = debts
+  	//groups[group_id].members = members
+  	
 
 	localStorage.setItem("group", JSON.stringify(groups));
+	localStorage.setItem("uploads", JSON.stringify(uploads));
 	localStorage.setItem("budget_income", JSON.stringify(budget_income));
   	localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
   	localStorage.setItem("edit_id", JSON.stringify(""));

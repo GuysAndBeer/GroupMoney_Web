@@ -45,6 +45,7 @@ async function auth(){
 
 function logout(){
     localStorage.setItem("current_user", JSON.stringify("none"));
+    localStorage.clear();
 }
 
 function loadMembers(){

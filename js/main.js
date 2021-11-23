@@ -1,6 +1,22 @@
 async function auth(){
     let current_user = JSON.parse(localStorage.getItem("current_user"))
     let nav = document.getElementById("authorisation")
+    let user_dashboard = document.getElementById("user_dashboard")
+    let budget_dashboard = document.getElementById("budget_dashboard")
+    let budget_income_field = document.getElementById("budget_income")
+    let budget_expenses_field = document.getElementById("budget_expenses")
+    let budget_expenses_count = document.getElementById("expenses_count")
+    let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let groups = []
+    let uploads = []
+    groups = JSON.parse(localStorage.getItem("groups"))
+    uploads = JSON.parse(localStorage.getItem("uploads"))
+    let expenses = []
+    let groups_count = groups.length
+    let group_id = parseInt(current_group_id)
+    expenses = uploads[group_id].expenses
+    let members_count = groups[group_id].members.length
+    let expenses_count = expenses.length
 
     if(current_user === "none"){
         let a = document.createElement("a")
@@ -9,6 +25,9 @@ async function auth(){
         a.className = "nav__link"
         nav.appendChild(a)
     }else {
+        budget_income_field.textContent = groups_count
+        budget_expenses_field.textContent = members_count
+        budget_expenses_count.textContent = expenses_count
         let username = current_user
         user_dashboard.textContent = username
         let a = document.createElement("a")
@@ -62,7 +81,8 @@ function loadMembers(){
             p_amount.className = "amount"
         }
 
-        p_amount.textContent = groups[group_id].netAmt[i].toString() + '$'
+        p_amount.textContent = groups[group_id].netAmt[i].toFixed(2).toString() + '$'
+        //p_amount.textContent = (p_amount.textContent).substring(0, 4)
 
         button_delete = document.createElement("button")
         button_delete.className = "btn_delete"
@@ -83,9 +103,121 @@ function loadMembers(){
 
 }
 
+function loadexpenses(){
+
+    let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let uploads = []
+    uploads = JSON.parse(localStorage.getItem("uploads"))
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let expenses = []
+    expenses = uploads[group_id].expenses
+    console.log("uploads", uploads)
+
+    let ul = document.getElementById("expense_list")
+    let ul_activity = document.getElementById("activity")
+
+    if (expenses.length > 0){
+        for (let expense of expenses) {
+            let li = document.createElement("li")
+            li.className = "view_item"
+            let li1 = document.createElement("li")
+            li1.className = li.className
+            let div_left = document.createElement("div")
+            div_left.className = "vi_left"
+            let div_left1 = document.createElement("div")
+            div_left1.className = div_left.className
+            let div_right = document.createElement("div")
+            div_right.className = "vi_right"
+            let div_right1 = document.createElement("div")
+            div_right1.className = div_right.className
+            let img_category = document.createElement("img")
+            
+            if (expense.category == "Food"){
+                img_category.src = "./img/food.jpg"
+            }
+
+            else{
+                img_category.src = "./img/house.jpg"    
+            }
+
+            let p = document.createElement("p")
+            p.textContent = expense.concept
+            let div_expense = document.createElement("div")
+            div_expense.className = "expense_amount"
+            div_expense.textContent = expense.amount.toString() + '$'
+            let img_receipt = document.createElement("input")
+            //img_receipt.className = "img"
+            img_receipt.className = "img"
+            img_receipt.setAttribute("type", "image")
+            //img_receipt.setAttribute("role", "button")
+            if(expense.receipt === null){
+               img_receipt.src = "./img/receipt.jpg"
+            }
+            else{
+                img_receipt.src = expense.receipt
+            }
+            //img_receipt.src = "./img/receipt.jpg"
+            let content_text = document.createElement("p")
+            content_text.className = "content"
+            /*if(expense.users.toString()){
+                let temp = expense.users.toString()
+                content_text.textContent = expense.who_paid + "------>" + temp
+            }*/
+
+            content_text.textContent = expense.who_paid
+            
+            
+
+            let button_delete = document.createElement("button")
+            button_delete.className = "btn_delete"
+            button_delete.textContent = "Delete"
+            button_delete.setAttribute("id", expense.id)
+            button_delete.setAttribute("onClick", "delete_expense(this.id)")
+
+            let img_pers = document.createElement("img")
+            img_pers.src = "./img/person.png"
+            let p_activity = document.createElement("p")
+            p_activity.className = "title"
+            p_activity.textContent = expense.who_paid + " added expense for " + expense.concept + '($' + expense.amount + ')'
+            let p_activity_date = document.createElement("p")
+            p_activity_date.className = "content"
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            p_activity_date.textContent = today
+
+            div_left.appendChild(img_category)
+            div_right.appendChild(p)
+            div_right.appendChild(div_expense)
+            div_right.appendChild(img_receipt)
+            div_right.appendChild(content_text)
+            //div_right.appendChild(button_edit)
+            div_right.appendChild(button_delete)
+
+            div_left1.appendChild(img_pers)
+            div_right1.appendChild(p_activity)
+            div_right1.appendChild(p_activity_date)
+
+            li.appendChild(div_left)
+            li.appendChild(div_right)
+
+            li1.appendChild(div_left1)
+            li1.appendChild(div_right1)
+
+            ul.appendChild(li)
+            ul_activity.appendChild(li1)
+
+        }
+    }   
+}
+
 
 auth()
 loadMembers()
+loadexpenses()
 
 
 
@@ -188,13 +320,14 @@ function loadData(){
             //img_receipt.className = "img"
             img_receipt.className = "img"
             img_receipt.setAttribute("type", "image")
-            //img_receipt.setAttribute("role", "button")
-            if(expense.receipt === null){
-        	   img_receipt.src = "./img/receipt.jpg"
-            }
-            else{
-                img_receipt.src = expense.receipt
-            }
+            img_receipt.setAttribute("role", "button")
+            //if(expense.receipt === null){
+        	 //  img_receipt.src = "./img/receipt.jpg"
+            //}
+            //else{
+              // img_receipt.src = expense.receipt
+            //}
+            //img_receipt.src = "./img/food.jpg"
         	let content_text = document.createElement("p")
         	content_text.className = "content"
         	let temp = expense.users.toString()

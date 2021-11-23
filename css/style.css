@@ -67,6 +67,7 @@
 .main{
 	text-align: center;
 	height: 100vh;
+	min-height: 150vh;
 }
 
 
@@ -151,7 +152,8 @@
 }
 
 .budget-income,
-.budget-expenses {
+.budget-expenses,
+.expense-count {
     padding: 12px;
     text-transform: uppercase;
 	align-items: center;
@@ -169,8 +171,14 @@
 	margin-bottom: 10px;
 }
 
+.expense-count{
+	background-color: green;
+	margin-bottom: 10px;
+}
+
 .budget-income-title,
-.budget-expenses-title {
+.budget-expenses-title,
+.budget-expenses-count {
     font-size: 13px;
 }
 

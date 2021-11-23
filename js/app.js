@@ -15,7 +15,7 @@ let modal1Close = document.querySelector('.modal1-close');
 modalBtn.addEventListener('click', function(){
 	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
 	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
+	groups = JSON.parse(localStorage.getItem("groups"))
 	console.log("current_group_id", current_group_id)
 	let group_id = parseInt(current_group_id)
 	let current_group = groups[group_id]
@@ -116,23 +116,22 @@ function fill_modal(){
 
 	let a = 0
 
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let expenses = current_group.expenses
-	let debts = current_group.debts
-	let members = current_group.members
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+  let group_id = parseInt(current_group_id)
+  let uploads = []
+  uploads = JSON.parse(localStorage.getItem("uploads"))
+  let groups = JSON.parse(localStorage.getItem("groups"))
+  let expenses = []
+  expenses = uploads[group_id].expenses
+  members = groups[group_id].members
+   console.log("uploads", expenses)
 
 	for (let member of members){
 		let count = document.getElementById("member-select").childElementCount;
 		if(count < members.length){
 			let member_choice = document.createElement("option");
-			member_choice.setAttribute("value", member.name);
-			let t = document.createTextNode(member.name);
+			member_choice.setAttribute("value", member);
+			let t = document.createTextNode(member);
 			member_choice.appendChild(t);
 			document.getElementById("member-select").appendChild(member_choice);
 		}
@@ -147,10 +146,10 @@ function fill_modal(){
 	  	x.setAttribute("type", "checkbox");
 	  	x.className = "radio__input"
 	  	x.setAttribute("id", "radio_" + a);
-	  	x.setAttribute("name", member.name);
+	  	x.setAttribute("name", member);
 	  	let label_input = document.createElement("label")
 	  	label_input.className = "radio__label"
-	  	label_input.textContent = member.name
+	  	label_input.textContent = member
 	  	label_input.setAttribute("for", "radio_" + a)
 	  	input_value = document.createElement("input")
 	  	input_value.className = "am_input"

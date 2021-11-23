@@ -160,12 +160,14 @@ function loadexpenses(){
             //img_receipt.src = "./img/receipt.jpg"
             let content_text = document.createElement("p")
             content_text.className = "content"
-            /*if(expense.users.toString()){
-                let temp = expense.users.toString()
-                content_text.textContent = expense.who_paid + "------>" + temp
-            }*/
+            //if(expense.users.toString()){
+             //   let temp = expense.users.toString()
+              //  content_text.textContent = expense.who_paid + "------>" + temp
+            //}
 
-            content_text.textContent = expense.who_paid
+            //else {
+               content_text.textContent = expense.who_paid
+           //}
             
             
 
@@ -214,10 +216,60 @@ function loadexpenses(){
     }   
 }
 
+function loadDebts(){
+    ul = document.getElementById("debt-list")
+    let debts = []
+
+    let new_debt = new Debt(0, "wav", "rex", 100)
+    debts.push(new_debt)
+
+
+    if (debts.length > 0){
+
+        for (let debt of debts) {
+            li = document.createElement("li")
+            li.className = "view_item"
+            div_left = document.createElement("div")
+            div_left.className = "vi_left"
+            div_right = document.createElement("div")
+            div_right.className = "vi_right"
+            let img_person = document.createElement("img")
+            
+            img_person.src = "./img/person.png"
+
+            let p_title = document.createElement("p")
+            p_title.className = 'title'
+            p_title.textContent = debt.name + '---->' + debt.nameto
+
+            let p_amount = document.createElement("p")
+            p_amount.className = "debt_content"
+            p_amount.textContent = debt.amount.toString() + '$'
+
+            let button_settle_up = document.createElement("button")
+            button_settle_up.className = "btn_edit"
+            button_settle_up.textContent = "Setle Up"
+            button_settle_up.setAttribute("id", debt.id + "_debt")
+            button_settle_up.setAttribute("onClick", "setle_debt(this.id)")
+
+
+            div_left.appendChild(img_person)
+            div_right.appendChild(p_title)
+            div_right.appendChild(p_amount)
+            div_right.appendChild(button_settle_up)
+
+            li.appendChild(div_left)
+            li.appendChild(div_right)
+
+            ul.appendChild(li)
+
+        }
+    }
+}
 
 auth()
 loadMembers()
 loadexpenses()
+loadDebts()
 
 
 

@@ -45,7 +45,7 @@ async function readTransaction(expenses, copy){
                 expense_title = data1[i].title
                 let exp = new Expense(count, expense_paidBy, expense_amount, expense_date, expense_title, "Food", expense_paidTo)
                 expenses.push(exp)
-                localStorage.setItem("expenses", JSON.stringify(expenses))
+                //localStorage.setItem("expenses", JSON.stringify(expenses))
                 count += 1
             }
         })
@@ -91,11 +91,19 @@ function checkGroups(groups, expenses, copy){
     }
 
     console.log("upload", uploads)
-    localStorage.setItem("uploads", JSON.stringify(uploads))
+
+    //upl = document.getElementById("uploads")
+    //gr = document.getElementById("groups")
+
+    //if(upl)
+    //{
+        localStorage.setItem("uploads", JSON.stringify(uploads))
+    //}
     
 
-
-    localStorage.setItem("groups", JSON.stringify(new_groups))
+    //if(gr){
+        localStorage.setItem("groups", JSON.stringify(new_groups))
+    //}
 
 
     const user = firebase.auth().currentUser;

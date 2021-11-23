@@ -6,6 +6,8 @@ function add_expense(){
     uploads = JSON.parse(localStorage.getItem("uploads"))
     let groups = JSON.parse(localStorage.getItem("groups"))
     let expenses = []
+    let members = []
+    let debts = JSON.parse(localStorage.getItem("debts"))
     expenses = uploads[group_id].expenses
     members = groups[group_id].members
     console.log("uploads", expenses)
@@ -62,12 +64,12 @@ function add_expense(){
       		split_users.push(members)
       		if (document.getElementById("input_" + i).value === ""){
       			groups[group_id].netAmt[i] = groups[group_id].netAmt[i] - parseInt(document.getElementById("input_" + i).placeholder)
-      			//debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
+      			debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
       			sum = sum + parseInt(document.getElementById("input_" + i).placeholder)
       		}
       		else{
 	      		groups[group_id].netAmt[i] = groups[group_id].netAmt[i] - parseInt(document.getElementById("input_" + i).value)
-	      		//debt_amount.push(parseInt(document.getElementById("input_" + i).value))
+	      		debt_amount.push(parseInt(document.getElementById("input_" + i).value))
 	      		sum = sum + parseInt(document.getElementById("input_" + i).value) 
       		}
     	}
@@ -95,13 +97,14 @@ function add_expense(){
   	}
 
   	else{
-  		let expense = new Expense(id, name, amount, concept, category, split_users)
+  		let date = ""
+  		let expense = new Expense(id, name, amount, date, concept, category, split_users)
   		expenses.push(expense)
   		let counter = false
-  		/*for (let i = 0; i < split_users.length; i++){
+  		/*for(let i = 0; i < 3; i++){
   			for (let d of debts){
   				let j = 0
-  				if (d.name == split_users[i] && d.nameto == name) {
+  				if (d.name == members[i] && d.nameto == name) {
   					debts[d.id].amount = debts[d.id].amount + debt_amount[i]
   					counter = true
   				}
@@ -110,28 +113,12 @@ function add_expense(){
 
   			if (!counter) 
   			{
-  				let debt = new Debt(id_debt, split_users[i], name, debt_amount[i])
+  				let debt = new Debt(id_debt, members[i], name, debt_amount[i])
   				debts.push(debt)
-  			}
-  			
-  			if (split_users[i] == current_user)
-  			{
-  				if (document.getElementById("input_" + i).value === ""){
-  					budget_expenses += parseInt(document.getElementById("input_" + i).placeholder)	
-  				}
-  				
-  				else{
-  					budget_expenses += parseInt(document.getElementById("input_" + i).value)
-  				}
   			}
 
   			counter = false	
-  		}
-
-	  	if (name == current_user) 
-	  	{
-	  		budget_income += amount
-	  	}*/
+  		}*/
 
 	  	for (let j = 0; j < members.length; j++){
 	  		if (members[j] == name) {
@@ -140,15 +127,17 @@ function add_expense(){
 	  	}		
   	}
 
-  	uploads[group_id].expenses = expenses
+
+
+  	//uploads[group_id].expenses = expenses
   	//groups[group_id].debts = debts
   	//groups[group_id].members = members
-  	
 
-	localStorage.setItem("group", JSON.stringify(groups));
+	localStorage.setItem("groups", JSON.stringify(groups));
 	localStorage.setItem("uploads", JSON.stringify(uploads));
-	localStorage.setItem("budget_income", JSON.stringify(budget_income));
-  	localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
+	localStorage.setItem("debts", JSON.stringify(debts));
+	//localStorage.setItem("budget_income", JSON.stringify(budget_income));
+  	//localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
   	localStorage.setItem("edit_id", JSON.stringify(""));
   	window.location.href = "./main.html"
 }
@@ -198,71 +187,48 @@ function delete_expense(ind){
 	console.log("index",ind)
 	index = parseInt(ind)
 
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let expenses = current_group.expenses
-	let debts = current_group.debts
-	let members = current_group.members
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let uploads = []
+    uploads = JSON.parse(localStorage.getItem("uploads"))
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let expenses = []
+    let members = []
+    expenses = uploads[group_id].expenses
+    members = groups[group_id].members
+
 	let current_user = JSON.parse(localStorage.getItem("current_user"))
-	let budget_income = JSON.parse(localStorage.getItem("budget_income"))
-	let budget_expenses = JSON.parse(localStorage.getItem("budget_expenses"))
-	for (let i = 0; i < debts.length; i++){
-		if(expenses[index].users.includes(debts[i].name) && debts[i].nameto == expenses[index].who_paid)
-		{
-			debts[i].amount -= parseInt(expenses[index].amount)
-		}
-	}
 
 	for (let i = 0; i < members.length; i++)
 	{
-		if (members[i].name == expenses[index].who_paid){
-			members[i].spent = members[i].spent - parseInt(expenses[index].amount)
-			members[i].budget = members[i].budget - parseInt(expenses[index].amount)
+		if (members[i] == expenses[index].who_paid){
+			groups[group_id].netAmt[i] = groups[group_id].netAmt[i] - parseInt(expenses[index].amount)
 		}
-	}
-
-	
-	if (expenses[index].who_paid == current_user)
-	{
-		budget_income = budget_income - parseInt(expenses[index].amount)	
-	}
-
-	if(expenses[index].users.includes(current_user))
-	{
-		budget_expenses -= expenses[index].amount
 	}
 
 	expenses.splice(expenses.indexOf(expenses[index]), 1)
 	groups[group_id].members = members
-	groups[group_id].debts = debts
-	groups[group_id].expenses = expenses
-	localStorage.setItem("group", JSON.stringify(groups));
-	localStorage.setItem("budget_income", JSON.stringify(budget_income));
-	localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
+	uploads[group_id].expenses = expenses
+	localStorage.setItem("groups", JSON.stringify(groups));
+	localStorage.setItem("uploads", JSON.stringify(uploads));
+	//localStorage.setItem("budget_income", JSON.stringify(budget_income));
+	//localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
 	window.location.href = "./main.html"
 }
 
 function add_member(){
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let members = current_group.members
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let members = groups[group_id].members
 	let member_field = document.getElementById("member_input")
 	let member = member_field.value
-	let id_member = members[members.length - 1].id + 1
-	let new_member = new Member(id_member, member, 0, 0)
-	members.push(new_member)
+	//let id_member = members[members.length - 1].id + 1
+	//let new_member = new Member(id_member, member, 0, 0)
+	members.push(member)
+	groups[group_id].netAmt.push(0)
 	groups[group_id].members = members
-	localStorage.setItem("group", JSON.stringify(groups));
+	localStorage.setItem("groups", JSON.stringify(groups));
 	window.location.href = "./main.html"
 }
 
@@ -279,8 +245,7 @@ function setle_debt(ind){
 	let debts = current_group.debts
 	let members = current_group.members
 	let current_user = JSON.parse(localStorage.getItem("current_user"))
-	let budget_income = JSON.parse(localStorage.getItem("budget_income"))
-	let budget_expenses = JSON.parse(localStorage.getItem("budget_expenses"))
+
 
 	for(let i = 0; i < members.length; i++){
 		if (members[i].name === debts[debt_index].name) {
@@ -316,20 +281,17 @@ function setle_debt(ind){
 function delete_member(index){
 	let member_index = parseInt(index[0])
 
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("group"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let expenses = current_group.expenses
-	let members = current_group.members
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+    let group_id = parseInt(current_group_id)
+    let groups = JSON.parse(localStorage.getItem("groups"))
+    let members = groups[group_id].members
+    uploads = JSON.parse(localStorage.getItem("uploads"))
+    let expenses = uploads[group_id].expenses
 	let delete_mem = false
 
 	for(expense of expenses)
 	{
-		if (expense.users.includes(members[member_index].name) || expense.who_paid.includes(members[member_index].name)) 
+		if (expense.users.includes(members[member_index]) || expense.who_paid.includes(members[member_index])) 
 		{
 			delete_mem = true
 			alert("Member can not be deleted because it is used in expenses")
@@ -341,8 +303,53 @@ function delete_member(index){
 		members.splice(members.indexOf(members[member_index]), 1)
 	}
 	groups[group_id].members = members
-	localStorage.setItem("group", JSON.stringify(groups));
+	localStorage.setItem("groups", JSON.stringify(groups));
 	window.location.href = "./main.html"
+}
+
+function loadDebts(debts){
+	ul = document.getElementById("debt-list")
+
+    if (debts.length > 0){
+
+        for (let debt of debts) {
+            li = document.createElement("li")
+            li.className = "view_item"
+            div_left = document.createElement("div")
+            div_left.className = "vi_left"
+            div_right = document.createElement("div")
+            div_right.className = "vi_right"
+            let img_person = document.createElement("img")
+            
+            img_person.src = "./img/person.png"
+
+            let p_title = document.createElement("p")
+            p_title.className = 'title'
+            p_title.textContent = debt.name + '---->' + debt.nameto
+
+            let p_amount = document.createElement("p")
+            p_amount.className = "debt_content"
+            p_amount.textContent = debt.amount.toString() + '$'
+
+            let button_settle_up = document.createElement("button")
+            button_settle_up.className = "btn_edit"
+            button_settle_up.textContent = "Setle Up"
+            button_settle_up.setAttribute("id", debt.id + "_debt")
+            button_settle_up.setAttribute("onClick", "setle_debt(this.id)")
+
+
+            div_left.appendChild(img_person)
+            div_right.appendChild(p_title)
+            div_right.appendChild(p_amount)
+            div_right.appendChild(button_settle_up)
+
+            li.appendChild(div_left)
+            li.appendChild(div_right)
+
+            ul.appendChild(li)
+
+        }
+    }
 }
 
 

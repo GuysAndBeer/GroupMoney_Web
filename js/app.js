@@ -122,6 +122,7 @@ function fill_modal(){
   uploads = JSON.parse(localStorage.getItem("uploads"))
   let groups = JSON.parse(localStorage.getItem("groups"))
   let expenses = []
+  let members = []
   expenses = uploads[group_id].expenses
   members = groups[group_id].members
    console.log("uploads", expenses)

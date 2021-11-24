@@ -1,4 +1,9 @@
 async function auth(){
+
+    const user = firebase.auth().currentUser;
+    name = user.email;
+
+
     let current_user = JSON.parse(localStorage.getItem("current_user"))
     let nav = document.getElementById("authorisation")
     let user_dashboard = document.getElementById("user_dashboard")
@@ -9,6 +14,8 @@ async function auth(){
     let current_group_id = JSON.parse(localStorage.getItem("group_id"))
     let groups = []
     let uploads = []
+    
+    //------------------TO DO----------------------//
     groups = JSON.parse(localStorage.getItem("groups"))
     uploads = JSON.parse(localStorage.getItem("uploads"))
     let expenses = []
@@ -45,8 +52,12 @@ async function auth(){
 
 function logout(){
     localStorage.setItem("current_user", JSON.stringify("none"));
-    localStorage.clear();
 }
+
+
+
+
+
 
 function loadMembers(){
     let current_group_id = JSON.parse(localStorage.getItem("group_id"))
@@ -148,7 +159,7 @@ function loadexpenses(){
             div_expense.className = "expense_amount"
             div_expense.textContent = expense.amount.toString() + '$'
             let img_receipt = document.createElement("input")
-            //img_receipt.className = "img"
+            img_receipt.className = "img"
             img_receipt.className = "img"
             img_receipt.setAttribute("type", "image")
             //img_receipt.setAttribute("role", "button")
@@ -158,7 +169,7 @@ function loadexpenses(){
             else{
                 img_receipt.src = expense.receipt
             }
-            //img_receipt.src = "./img/receipt.jpg"
+            img_receipt.src = "./img/receipt.jpg"
             let content_text = document.createElement("p")
             content_text.className = "content"
             //if(expense.users.toString()){

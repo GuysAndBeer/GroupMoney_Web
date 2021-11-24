@@ -6,7 +6,7 @@ let dictionary = {
 
         'login': {
             'en': 'Sign in',
-            'ru': 'Логин'  
+            'ru': 'Войти'  
         },
 
         'income': {

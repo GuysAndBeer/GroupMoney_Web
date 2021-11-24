@@ -4,47 +4,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Index</title>
-
 </head>
 <body>
-	<header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a href="./index.html" class="header__logo">
-                    SplitwiseClone
-                </a>
-                <div class="header__items" id="authorisation">
-                    <a href="./login.html">Sign In</a>
-                    <div class="lang-menu">
-                        <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
-                        <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+    <div class="wrapper">
+        <div class="content">
+            <header class="header">
+                <div class="container">
+                    <div class="header__inner">
+                        <a href="./index.html" class="header__logo">
+                            SplitwiseClone
+                        </a>
+                        <div class="header__items" id="authorisation">
+                            <a href="./login.html">Sign In</a>
+                            <div class="lang-menu">
+                                <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
+                                <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                </div>
+            </header>
+            <main class="main">
+                <div class="info">
+                    <div class="info__item">
+                        <p data-translate="greet">To start with splitapp firts sign in </p>
+                    </div>
+                    <div class="info__item">
+                        <a class="info-login" data-translate="login" href="./login.html">Sign In</a>
                     </div>
                 </div>
-            </div>
-            <div class="line"></div>
+            </main>
         </div>
-    </header>
-    <main class="main">
-        <div class="info">
-            <div class="info__item">
-                <p data-translate="greet">To start with splitapp firts sign in </p>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__inner">
+                    <div class="footer__title">Group Money 2021</div>
+                    
+                    <div class="footer__info">@Copyright reserved</div>
+                </div>
             </div>
-            <div class="info__item">
-                <a class="info-login" data-translate="login" href="./login.html">Sign In</a>
-            </div>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__inner">
-                <div class="footer__title">Guys and Beer 2021</div>
-                
-                <div class="footer__info">@Copyright reserved</div>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/translate.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
 

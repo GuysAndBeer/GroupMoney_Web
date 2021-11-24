@@ -1,5 +1,9 @@
 async function auth(){
     let current_user = JSON.parse(localStorage.getItem("current_user"))
+    console.log(current_user)
+    if(!current_user){
+        window.location.href = "./index.html"
+    }
     let nav = document.getElementById("authorisation")
     let user_dashboard = document.getElementById("user_dashboard")
     let budget_dashboard = document.getElementById("budget_dashboard")

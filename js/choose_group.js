@@ -5,6 +5,19 @@ let copy = []
 async function readFirebase (groups){
     let count1 = 0
 
+// const uid = firebase.auth().currentUser.uid;
+//   var ref = firebase.database().ref('/users/').orderByChild('UID').equalTo(uid);
+//   ref.once('value', (snapshot) => {
+//     const updates = {};
+//     snapshot.forEach((child) => {
+//       const userKey = child.key;
+//       const userObject = child.val();
+//       updates[`${userKey}/fieldWhichYouWantToUpdate`] = `Field Value you want it to set to`;
+//       firebase.database().ref('/users/').update(updates);
+//     });
+//   })
+//   console.log(ref)
+
 
     const dbRef = firebase.database().ref("groups");
     dbRef.once("value", function(snapshot){
@@ -19,6 +32,8 @@ async function readFirebase (groups){
             count1++
         }
     })
+
+
 
 
 }
@@ -133,6 +148,14 @@ function selectGroup(index){
     window.location.href = './main.html'
 }
 
+// function checkUser() {
+//     let current_user = JSON.parse(localStorage.getItem("current_user"))
+//     if(!current_user){
+//         window.location.href = "./index.html"
+//     }
+// }
+
+// checkUser()
 
 readFirebase(groups)
 readTransaction(expenses, copy)

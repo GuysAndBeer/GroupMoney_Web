@@ -1,5 +1,5 @@
 class Expense{
-	constructor(id, who_paid, amount, date, concept, category, users){
+	constructor(id, who_paid, amount, concept, category, users){
 		this.id = id;
 		this.who_paid = who_paid;
 		this.amount = amount;

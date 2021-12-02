@@ -1,6 +1,5 @@
 class Debt{
-	constructor(id, name, nameto, amount){
-		this.id = id;
+	constructor(name, nameto, amount){
 		this.name = name;
 		this.nameto = nameto;
 		this.amount = amount;

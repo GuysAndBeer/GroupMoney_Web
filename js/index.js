@@ -4,6 +4,7 @@ function logout (){
     }).catch((error) => {
         // An error happened.
     });
+    localStorage.clear()
 }
 
 logout()

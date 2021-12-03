@@ -66,5 +66,16 @@ function selectGroup(index){
 }
 
 
+function auth(){
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+        } else {
+            window.location.href = "./index.html"
+        }
+    });
+}
+
+//localStorage.clear()
+auth()
 readFirebase(groups)
 setTimeout(checkGroups, 2000, groups);

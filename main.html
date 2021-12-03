@@ -15,148 +15,149 @@
 <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
 
-	<header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a href="./main.html" class="header__logo">
-                    SplitwiseClone
-                </a>
-                <div class="header__items" id="authorisation">
-                </div>
-            </div>
-            <div class="line"></div>
-        </div>
-    </header>
-	<main class="main">
-		<div class="top container">
-			<div class="budget">
-				<div class="budget-title" id="user_dashboard">
-					Username
-				</div>
-				<div class="buttons__flex">
-					<div class="delete_user">
-						DELETE USER
+	<div class="wrapper">
+
+		<div class="content">
+			<header class="header">
+				<div class="container">
+					<div class="header__inner">
+						<a href="./main.html" class="header__logo">
+							SplitwiseClone
+						</a>
+						<div class="header__items" id="authorisation">
+						</div>
 					</div>
-					<a class="choose_group" href="./choose_group.html">Choose group</a>
+					<div class="line"></div>
 				</div>
-				
-				<div class="budget-income">
-					<div class="budget-income-title">Groups</div>
-					<div class="right">
-						<div class="budget-income-value" id="budget_income">2</div>
-					</div>
-				</div>
-				<div class="budget-expenses">
-					<div class="budget-expenses-title">Current group</div>
-					<div class="right">
-						<div class="budget-expenses-value" id="budget_expenses">2</div>
-					</div>
-				</div>
-<!--				<div class="expense-count">-->
-<!--					<div class="budget-expenses-count">Expenses</div>-->
-<!--					<div class="right">-->
-<!--						<div class="budget-expenses-count" id="expenses_count">2</div>-->
-<!--					</div>-->
-<!--				</div>-->
-			</div>
-		</div>
-		<div class="container">
-			<div class="tabs">
-				<nav class="tabs__items">
-					<button id="expenses_tab" class="tabs_item" onclick="openOption(event, 'tab_01')"><span class="tab_name" data-translate="expenses">Expenses</span></button>
-					<button id="debts_tab" class="tabs_item" onclick="openOption(event, 'tab_02')"><span class="tab_name2" data-translate="debts">Debts</span></button>
-					<button id="members_tab" class="tabs_item" onclick="openOption(event, 'tab_03')"><span class="tab_name3" data-translate="members">Members</span></button>
-					<button id="activity_tab" class="tabs_item" onclick="openOption(event, 'tab_04')"><span class="tab_name4" data-translate="activity">Activity</span></button>
-				</nav>
-				<div class="tabs__body">
-					<div id="tab_01" class="tabs__block">
-						<p><button class="add_expense" data-translate="add_expense">Add Expenses</button></p>
-						<ul class="view_wrap expense-list" id="expense_list">
-							
-						</ul>
-					</div>
-	
-					<div id="tab_02" class="tabs__block">
-						<ul class="view_wrap expense-list" id="debt-list">
+			</header>
+			
+			<main class="main">
+				<div class="top container">
+					<div class="budget">
+						<div class="budget-title" id="user_dashboard">
+							Username
+						</div>
+						<div class = "row">
+							<button class="copy"><img src="./img/copy-solid.svg" alt="copy"></button>
+							<div class="buttons__flex">
+								<a class="choose_group" href="./choose_group.html">Choose group</a>
+							</div>
+						</div>
 						
-						</ul>
-					</div>
-	
-					<div id="tab_03" class="tabs__block">
-						<p><button class="add_member" data-translate="add_member">Add Member</button></p>
-						<ul class="view_wrap expense-list" id="member-list">
-							
-						</ul>
-					</div>
-	
-					<div id="tab_04" class="tabs__block">
-						<p class="activity" data-translate="recent_activity">Recent activity</p>
-						<ul class="view_wrap expense-list" id="activity">
-							
-						</ul>
+						<div class="budget-income">
+							<div class="budget-income-title">Groups</div>
+							<div class="right">
+								<div class="budget-income-value" id="budget_income">2</div>
+							</div>
+						</div>
+						<div class="budget-expenses">
+							<div class="budget-expenses-title">Current group</div>
+							<div class="right">
+								<div class="budget-expenses-value" id="budget_expenses">2</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+				<div class="container">
+					<div class="tabs">
+						<nav class="tabs__items">
+							<button id="expenses_tab" class="tabs_item" onclick="openOption(event, 'tab_01')"><span class="tab_name" data-translate="expenses">Expenses</span></button>
+							<button id="debts_tab" class="tabs_item" onclick="openOption(event, 'tab_02')"><span class="tab_name2" data-translate="debts">Debts</span></button>
+							<button id="members_tab" class="tabs_item" onclick="openOption(event, 'tab_03')"><span class="tab_name3" data-translate="members">Members</span></button>
+							<button id="activity_tab" class="tabs_item" onclick="openOption(event, 'tab_04')"><span class="tab_name4" data-translate="activity">Activity</span></button>
+						</nav>
+						<div class="tabs__body">
+							<div id="tab_01" class="tabs__block">
+								<p><button class="add_expense" data-translate="add_expense">Add Expenses</button></p>
+								<ul class="view_wrap expense-list" id="expense_list">
+									
+								</ul>
+							</div>
+			
+							<div id="tab_02" class="tabs__block">
+								<ul class="view_wrap expense-list" id="debt-list">
+								
+								</ul>
+							</div>
+			
+							<div id="tab_03" class="tabs__block">
+								<p><button class="add_member" data-translate="add_member">Add Member</button></p>
+								<ul class="view_wrap expense-list" id="member-list">
+									
+								</ul>
+							</div>
+			
+							<div id="tab_04" class="tabs__block">
+								<p class="activity" data-translate="recent_activity">Recent activity</p>
+								<ul class="view_wrap expense-list" id="activity">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-bg">
+					<div class="modal">
+						<h2 class="title">Add new Expense</h2>
+						<div class="modal__border">
+							<label for="name" class="name">Who paid</label>
+							<div class="name-select" >
+								<select id="member-select">
+						
+								</select>
+							</div>
+							<label class="amount" for="amount">Amount</label>
+							<input type="value" name="amount" class="amount_input" id="amount" placeholder="0$">
+							<label for="concept" class="concept">Concept</label>
+							<input type="text" name="concept" class="concept_input" id="concept" placeholder="Expense name">
+							<label for="category-select" class="category">Category</label>
+							<div class="category-select">
+								<select id="category-select" >
+									<option value="0">Food</option>
+									<option value="1">Home</option>
+									<option value="2">Tickets</option>
+								</select>
+							</div>
+							<label for="shared" class="shared">Shared</label>
+							<button class="share_equally" id="shared" onclick="split_equally()">SHARE EQUALY</button>
+							<label for="myFile" class="add_receipt">Add Receipt</label>
+							<input type="file" id="myFile" name="filename" class="file">
+							<button class="button_file" id="add_file">Save receipt</button>
+							<button class="save" id="save_expense">Save</button>
+							<span class="modal-close">X</span>
+						</div>
+					</div>
+			
+					<div class="split_modal" id="split_modal">
+						<h2 class="title">Choose split method</h2>
+						<button class="save" >Save</button>
+					</div>
+			
+				</div>
+			
+				<div class="modal1-bg">
+					<div class="member_modal">
+						<h2>Add Member</h2>
+						<label class="member">Name</label>
+						<input type="name" name="member_name" class="name_input" placeholder="Name" id="member_input">
+						<button class="save" id="save_member">Save</button>
+						<span class="modal1-close">X</span>
+					</div>
+				</div>
+	
+			</main>
 		</div>
-		<div class="modal-bg">
-			<div class="modal">
-				<h2 class="title">Add new Expense</h2>
-				<div class="modal__border">
-					<label for="name" class="name">Who paid</label>
-					<div class="name-select" >
-						<select id="member-select">
-				
-						</select>
-					</div>
-					<label class="amount" for="amount">Amount</label>
-					<input type="value" name="amount" class="amount_input" id="amount" placeholder="0$">
-					<label for="concept" class="concept">Concept</label>
-					<input type="text" name="concept" class="concept_input" id="concept" placeholder="Expense name">
-					<label for="category-select" class="category">Category</label>
-					<div class="category-select">
-						<select id="category-select" >
-							<option value="0">Food</option>
-							<option value="1">Home</option>
-							<option value="2">Tickets</option>
-						</select>
-					</div>
-					<label for="shared" class="shared">Shared</label>
-					<button class="share_equally" id="shared" onclick="split_equally()">SHARE EQUALY</button>
-					<label for="myFile" class="add_receipt">Add Receipt</label>
-					<input type="file" id="myFile" name="filename" class="file">
-					<button class="button_file" id="add_file">Save receipt</button>
-					<button class="save" id="save_expense">Save</button>
-					<span class="modal-close">X</span>
+
+		<footer class="footer" id="footer">
+			<div class="container">
+				<div class="footer__inner">
+					<div class="footer__title">Guys and Beer 2021</div>
+					<div class="footer__info">@Copyright reserved</div>
 				</div>
 			</div>
-	
-			<div class="split_modal" id="split_modal">
-				<h2 class="title">Choose split method</h2>
-				<button class="save" >Save</button>
-			</div>
-	
-		</div>
-	
-		<div class="modal1-bg">
-			<div class="member_modal">
-				<h2>Add Member</h2>
-				<label class="member">Name</label>
-				<input type="name" name="member_name" class="name_input" placeholder="Name" id="member_input">
-				<button class="save" id="save_member">Save</button>
-				<span class="modal1-close">X</span>
-			</div>
-		</div>
-
-	</main>
-	<footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer__inner">
-                <div class="footer__title">Guys and Beer 2021</div>
-                <div class="footer__info">@Copyright reserved</div>
-            </div>
-        </div>
-    </footer>
-
+		</footer>
+	</div>
+			
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="./models/expense.js"></script>
 	<script src="./models/user.js"></script>

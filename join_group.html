@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Choose group</title>
+    <title>Join group</title>
   </head>
   <body>
     <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase.js"></script>
@@ -26,9 +26,9 @@
         <main class="main">
           <div class="container">
             <div class="choose__form">
-              <h3 class="choose__title">Create new group</h3>
-              <input class="choosebutton new_group_input" id="new_group_input" placeholder="Введите название группы" type="text">
-              <button onclick="createNewGroup()" class="choosebutton green">CREATE NEW GROUP</button>
+              <h3 class="choose__title">Join group</h3>
+              <input class="choosebutton new_group_input" id="new_group_input" placeholder="Введите номер группы" type="text">
+              <button onclick="joinGroup()" class="choosebutton green">JOIN GROUP</button>
             </div>
           </div>
         </main>
@@ -51,8 +51,7 @@
     <script src="./models/group.js"></script>
     <script src="./models/upload.js"></script>
     <script src="./js/firebase.js"></script>
-    <script src="./js/choose_group.js"></script>
-    <script src="./js/new_group.js"></script>
+    <script src="./js/joinGroup.js"></script>
 
   </body>
 </html>

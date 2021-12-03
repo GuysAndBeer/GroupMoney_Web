@@ -8,6 +8,11 @@ function createNewGroup(){
     //let current_user = JSON.parse(localStorage.getItem("current_user"))
     //group = new Group("", [], "", [], [])
 
+    if (group_name == "") {
+        alert("Input is empty cant add group")
+        return;
+    }
+
 
     var key_group = firebase.database().ref('groups/').push().key
     firebase.database().ref('groups/').child(key_group).set({

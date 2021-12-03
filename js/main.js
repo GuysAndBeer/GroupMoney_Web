@@ -69,7 +69,7 @@ function readCurrentTransactions(expenses){
     dbRef.once("value").then(function(snapshot) {
         let data = snapshot.val();
         for(let i in data) {
-            expenses[count] = new Expense(data[i].id, data[i].who_paid, data[i].amount, data[i].concept, data[i].category, data[i].users)
+            expenses[count] = new Expense(data[i].who_paid, data[i].amount, data[i].concept, data[i].category, data[i].users, data[i].key)
             count++
         }
     })
@@ -83,7 +83,7 @@ function readCurrentDebts(debts){
     dbRef.once("value").then(function(snapshot) {
         let data = snapshot.val();
         for(let i in data) {
-            debts[count] = new Debt(data[i].name, data[i].nameto, data[i].amount)
+            debts[count] = new Debt(data[i].name, data[i].nameto, data[i].amount, data[i].key)
             count++
         }
     })
@@ -109,6 +109,7 @@ function loadMembers(group){
     let i = 0
 
     for (let member of members) {
+
         li = document.createElement("li")
         li.className = "view_item"
         div_left = document.createElement("div")
@@ -136,7 +137,7 @@ function loadMembers(group){
         button_delete = document.createElement("button")
         button_delete.className = "btn_delete"
         button_delete.textContent = "Delete"
-        button_delete.setAttribute("id", member.id + "delete_member")
+        button_delete.setAttribute("id", i)
         button_delete.setAttribute("onClick", "delete_member(this.id)")
 
         div_left.appendChild(img_person)
@@ -161,6 +162,7 @@ function loadExpenses(expenses){
     let ul_activity = document.getElementById("activity")
 
     if (expenses.length > 0){
+        let count = 0
         for (let expense of expenses) {
             let li = document.createElement("li")
             li.className = "view_item"
@@ -187,6 +189,7 @@ function loadExpenses(expenses){
             let p = document.createElement("p")
             p.textContent = expense.concept
             let div_expense = document.createElement("div")
+            console.log('amount', expense.amount)
             div_expense.className = "expense_amount"
             div_expense.textContent = expense.amount.toString() + '$'
             //let img_receipt = document.createElement("input")
@@ -217,7 +220,7 @@ function loadExpenses(expenses){
             let button_delete = document.createElement("button")
             button_delete.className = "btn_delete"
             button_delete.textContent = "Delete"
-            button_delete.setAttribute("id", expense.id)
+            button_delete.setAttribute("id", count)
             button_delete.setAttribute("onClick", "delete_expense(this.id)")
 
             let img_pers = document.createElement("img")
@@ -254,6 +257,8 @@ function loadExpenses(expenses){
 
             ul.appendChild(li)
             ul_activity.appendChild(li1)
+
+            count = count + 1
 
         }
     }

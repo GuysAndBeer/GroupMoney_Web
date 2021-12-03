@@ -13,25 +13,18 @@ let modalClose = document.querySelector('.modal-close');
 let modal1Close = document.querySelector('.modal1-close');
 
 modalBtn.addEventListener('click', function(){
-	let current_group_id = JSON.parse(localStorage.getItem("current_group_id"))
-	let groups = []
-	groups = JSON.parse(localStorage.getItem("groups"))
-	console.log("current_group_id", current_group_id)
-	let group_id = parseInt(current_group_id)
-	let current_group = groups[group_id]
-	console.log("current_group", current_group)    
-	let members = current_group.members
-	if (members.length < 2) 
-	{
-		alert("Add at least one member to add transaction")
-		return;
-	}
+	// let members = current_group.members
+	// if (members.length < 2)
+	// {
+	// 	alert("Add at least one member to add transaction")
+	// 	return;
+	// }
 	modalBg.classList.add('bg-active');
 	tabs.classList.add('tabs_unactive');
 	tabs2.classList.add('tabs_unactive');
 	tabs3.classList.add('tabs_unactive');
 	tabs4.classList.add('tabs_unactive');
-	fill_modal()
+	fill_modal(group)
 });
 
 function edit_expense(ind){
@@ -112,20 +105,15 @@ function openOption(evt, optionName) {
   evt.currentTarget.className += " active";
 }
 
-function fill_modal(){
+function fill_modal(group){
 
 	let a = 0
 
 	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
-  let group_id = parseInt(current_group_id)
-  let uploads = []
-  uploads = JSON.parse(localStorage.getItem("uploads"))
-  let groups = JSON.parse(localStorage.getItem("groups"))
-  let expenses = []
-  let members = []
-  expenses = uploads[group_id].expenses
-  members = groups[group_id].members
-   console.log("uploads", expenses)
+	let current_group = group[0]
+
+	members = current_group.members
+
 
 	for (let member of members){
 		let count = document.getElementById("member-select").childElementCount;

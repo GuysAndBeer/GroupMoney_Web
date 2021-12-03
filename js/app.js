@@ -1,6 +1,7 @@
 let modalBtn = document.querySelector('.add_expense');
 let editBtn = document.querySelector('.edit_expense')
 let addmemberBtn = document.querySelector('.add_member');
+let copyBtn = document.querySelector('.copy');
 let splitBtn = document.querySelector('.share_equally');
 let tabs = document.querySelector('.tab_name');
 let tabs2 = document.querySelector('.tab_name2');
@@ -11,6 +12,17 @@ let modalBg1 = document.querySelector('.modal1-bg');
 let splitmodal = document.querySelector('.split_modal')
 let modalClose = document.querySelector('.modal-close');
 let modal1Close = document.querySelector('.modal1-close');
+
+
+copyBtn.addEventListener('click', function(event) {
+	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+  //let copyTextarea = current_group_id;
+  //copyTextarea.focus();
+  //copyTextarea.select();
+
+  navigator.clipboard.writeText(current_group_id);
+  alert("Copied the text: " + current_group_id);
+});
 
 modalBtn.addEventListener('click', function(){
 	// let members = current_group.members
@@ -128,7 +140,7 @@ function fill_modal(group){
 
 		let counter = document.getElementById("split_modal").childElementCount;
 
-		if (counter < members.length + 3) {
+		if (counter < members.length + 2) {
 			div_radio = document.createElement("div")
 			div_radio.className = "radio"
 			let x = document.createElement("INPUT");

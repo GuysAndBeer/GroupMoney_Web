@@ -67,4 +67,4 @@ function selectGroup(index){
 
 
 readFirebase(groups)
-setTimeout(checkGroups, 2000, groups);
+setTimeout(checkGroups, 3000, groups);

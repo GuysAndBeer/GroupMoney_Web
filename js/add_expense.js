@@ -323,33 +323,48 @@ function setle_debt(ind){
 	window.location.href = "./main.html"
 }
 
-function delete_member(index){
-	let member_index = parseInt(index[0])
- 	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
- 	console.log("sds", current_group_id)
- 	//let current_group = group[0]
- 	let members = group[0].members
- 	let netAmt = group[0].netAmt
-
- 	for(expense of expenses)
- 	{
- 		if (expense.users.includes(members[member_index]) || expense.who_paid.includes(members[member_index]))
- 		{
- 			delete_mem = true
- 			alert("Member can not be deleted because it is used in expenses")
- 			return;
- 		}
- 	}
-
- 	members.splice(members.indexOf(members[member_index]), 1)
- 	netAmt.splice(netAmt.indexOf(netAmt[member_index]), 1)
-
- 	firebase.database().ref('groups/').child(current_group_id).update({
-		members: members,
-		netAmt: netAmt
-	})
- 	window.location.href = "./main.html"
-}
+// // function delete_member(index){
+// // 	let member_index = parseInt(index[0])
+// //  	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+// //  	console.log("sds", current_group_id)
+// //  	//let current_group = group[0]
+// //  	let members = group[0].members
+// //  	let netAmt = group[0].netAmt
+// //
+// //
+// //  	for(expense of expenses)
+// //  	{
+// //  		if (expense.users.includes(members[member_index]) || expense.who_paid.includes(members[member_index]))
+// //  		{
+// //  			delete_mem = true
+// //  			alert("Member can not be deleted because it is used in expenses")
+// //  			return;
+// //  		}
+// //  	}
+// //
+// // 	for(debt of debts)
+// // 	{
+// // 		if (debt.name.includes(members[member_index]) || debt.nameTo.includes(members[member_index]))
+// // 		{
+// // 			delete_mem = true
+// // 			alert("Member can not be deleted because it is used in debts")
+// // 			return;
+// // 		}
+// // 	}
+//
+//
+//
+//
+//
+//  	members.splice(members.indexOf(members[member_index]), 1)
+//  	netAmt.splice(netAmt.indexOf(netAmt[member_index]), 1)
+//
+//  	firebase.database().ref('groups/').child(current_group_id).update({
+// 		members: members,
+// 		netAmt: netAmt
+// 	})
+//  	window.location.href = "./main.html"
+// }
 
 
 

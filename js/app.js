@@ -2,6 +2,7 @@ let modalBtn = document.querySelector('.add_expense');
 let editBtn = document.querySelector('.edit_expense')
 let addmemberBtn = document.querySelector('.add_member');
 let copyBtn = document.querySelector('.copy');
+let deleteBtn = document.querySelector('#delete_group_btn');
 let splitBtn = document.querySelector('.share_equally');
 let tabs = document.querySelector('.tab_name');
 let tabs2 = document.querySelector('.tab_name2');
@@ -23,6 +24,16 @@ copyBtn.addEventListener('click', function(event) {
   navigator.clipboard.writeText(current_group_id);
   alert("Copied the text: " + current_group_id);
 });
+
+deleteBtn.addEventListener('click', function (event) {
+	if (confirm('Are you sure you want to delete this group?')) {
+		let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+		firebase.database().ref('groups/').child(current_group_id).remove();
+		localStorage.clear()
+		window.location.href = "./choose_group.html"
+	} else {
+	}
+})
 
 modalBtn.addEventListener('click', function(){
 	let members = group[0].members

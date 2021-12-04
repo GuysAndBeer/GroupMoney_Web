@@ -139,17 +139,17 @@ function loadMembers(group){
 
         p_amount.textContent = current_group.netAmt[i] + '$'
 
-        button_delete = document.createElement("button")
-        button_delete.className = "btn_delete"
-        button_delete.textContent = "Delete"
-        button_delete.setAttribute("id", i)
-        button_delete.setAttribute("onClick", "delete_member(this.id)")
-        button_delete.setAttribute("data-translate", "delete")
+        // button_delete = document.createElement("button")
+        // button_delete.className = "btn_delete"
+        // button_delete.textContent = "Delete"
+        // button_delete.setAttribute("id", i)
+        // button_delete.setAttribute("onClick", "delete_member(this.id)")
+        // button_delete.setAttribute("data-translate", "delete")
 
         div_left.appendChild(img_person)
         div_right.appendChild(p_title)
         div_right.appendChild(p_amount)
-        div_right.appendChild(button_delete)
+        //div_right.appendChild(button_delete)
 
         li.appendChild(div_left)
         li.appendChild(div_right)

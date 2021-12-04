@@ -18,12 +18,13 @@ function auth(){
             let count_groups = JSON.parse(localStorage.getItem("count_groups"))
             let group_name = JSON.parse(localStorage.getItem("group_name"))
 
-            if(current_email === "none"){
+            if(!current_email){
                 let a = document.createElement("a")
                 a.textContent = "Sign In"
                 a.href = "login.html"
                 a.className = "nav__link"
                 nav.appendChild(a)
+                window.location.href = "./index.html"
             }else {
                 budget_income_field.textContent = count_groups
                 budget_expenses_field.textContent = group_name
@@ -92,11 +93,10 @@ function readCurrentDebts(debts){
 
 
 
-
+auth()
 readCurrentGroup(group)
 readCurrentTransactions(expenses)
 readCurrentDebts(debts)
-auth()
 setTimeout(loadMembers, 2000, group);
 setTimeout(loadExpenses, 2000, expenses);
 setTimeout(loadDebts, 2000, debts);
@@ -118,8 +118,12 @@ function loadMembers(group){
         div_right = document.createElement("div")
         div_right.className = "vi_right"
         let img_person = document.createElement("img")
-        img_person.setAttribute("src", "./img/person.png")
-
+        if (i==0) {
+            img_person.setAttribute("src", "./img/me.png")
+        }
+        else{
+            img_person.setAttribute("src", "./img/person.png")
+        }
         let p_title = document.createElement("p")
         p_title.className = 'title'
         p_title.textContent = member
@@ -140,6 +144,7 @@ function loadMembers(group){
         button_delete.textContent = "Delete"
         button_delete.setAttribute("id", i)
         button_delete.setAttribute("onClick", "delete_member(this.id)")
+        button_delete.setAttribute("data-translate", "delete")
 
         div_left.appendChild(img_person)
         div_right.appendChild(p_title)
@@ -223,6 +228,7 @@ function loadExpenses(expenses){
             button_delete.textContent = "Delete"
             button_delete.setAttribute("id", count)
             button_delete.setAttribute("onClick", "delete_expense(this.id)")
+            button_delete.setAttribute("data-translate", "delete")
 
             let img_pers = document.createElement("img")
             img_pers.src = "./img/person.png"
@@ -302,6 +308,7 @@ function loadDebts(debts){
             button_settle_up.textContent = "Setle Up"
             button_settle_up.setAttribute("id", count + "_debt")
             button_settle_up.setAttribute("onClick", "setle_debt(this.id)")
+            button_settle_up.setAttribute("data-translate", "settle-up")
 
 
 

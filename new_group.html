@@ -14,10 +14,14 @@
         <header class="header">
           <div class="container">
             <div class="header__inner">
-              <a href="./main.html" class="header__logo">
+              <a href="./choose_group.html" class="header__logo">
                 SplitwiseClone
               </a>
               <div class="header__items" id="authorisation">
+                <div class="lang-menu">
+                  <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
+                  <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+                </div>
               </div>
             </div>
             <div class="line"></div>
@@ -26,9 +30,9 @@
         <main class="main">
           <div class="container">
             <div class="choose__form">
-              <h3 class="choose__title">Create new group</h3>
-              <input class="choosebutton new_group_input" id="new_group_input" placeholder="Введите название группы" type="text">
-              <button onclick="createNewGroup()" class="choosebutton green">CREATE NEW GROUP</button>
+              <h3 class="choose__title" data-translate="create_group">Create new group</h3>
+              <input class="choosebutton new_group_input" id="new_group_input" placeholder="Write group name" type="text">
+              <button onclick="createNewGroup()" class="choosebutton green" data-translate="create_group" >CREATE NEW GROUP</button>
             </div>
           </div>
         </main>
@@ -53,6 +57,8 @@
     <script src="./js/firebase.js"></script>
     <script src="./js/choose_group.js"></script>
     <script src="./js/new_group.js"></script>
+    <script src="./js/translate.js"></script>
+
 
   </body>
 </html>

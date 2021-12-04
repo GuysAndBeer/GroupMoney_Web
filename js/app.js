@@ -140,7 +140,7 @@ function fill_modal(group){
 
 		let counter = document.getElementById("split_modal").childElementCount;
 
-		if (counter < members.length + 2) {
+		if (counter < members.length +1) {
 			div_radio = document.createElement("div")
 			div_radio.className = "radio"
 			let x = document.createElement("INPUT");
@@ -154,7 +154,9 @@ function fill_modal(group){
 	  	label_input.setAttribute("for", "radio_" + a)
 	  	input_value = document.createElement("input")
 	  	input_value.className = "am_input"
-	  	input_value.setAttribute("type", "value");
+	  	input_value.setAttribute("type", "number");
+	  	input_value.setAttribute("min", "0");
+	  	input_value.setAttribute("step", "1");
 	  	input_value.setAttribute("name", "amount_input");
 	  	input_value.setAttribute("placeholder", "0$");
 	  	input_value.setAttribute("id", "input_" + a);

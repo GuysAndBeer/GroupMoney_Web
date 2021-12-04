@@ -90,6 +90,14 @@ body {
 	border-radius: 5px;
 }
 
+@media screen and (max-width: 900px) {
+	.info-login{
+		font-size: 20px;
+	}
+}
+
+
+
 .info-login:hover{
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
@@ -139,7 +147,6 @@ body {
 }
 
 .budget {
-    position: absolute;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -153,6 +160,14 @@ body {
 .budget-title {
     font-size: 46px;
     margin-bottom: 10px;
+	white-space: nowrap;
+	overflow: auto;
+}
+
+.budget-expenses-value{
+	white-space: nowrap;
+	overflow: auto;
+	width: 100px;
 }
 
 
@@ -194,6 +209,7 @@ body {
 .budget-expenses-title,
 .budget-expenses-count {
     font-size: 13px;
+
 }
 
 .tabs__body{

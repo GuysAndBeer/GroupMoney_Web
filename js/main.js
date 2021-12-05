@@ -283,46 +283,49 @@ function loadDebts(debts){
     if (debts.length > 0){
         let count = 0
         for (let debt of debts) {
-            li = document.createElement("li")
-            li.className = "view_item"
-            div_left = document.createElement("div")
-            div_left.className = "vi_left"
-            div_right = document.createElement("div")
-            div_right.className = "vi_right"
-            let img_person = document.createElement("img")
+            if(debt.name != debt.nameto)
+            {
+                li = document.createElement("li")
+                li.className = "view_item"
+                div_left = document.createElement("div")
+                div_left.className = "vi_left"
+                div_right = document.createElement("div")
+                div_right.className = "vi_right"
+                let img_person = document.createElement("img")
 
-            img_person.src = "./img/person.png"
+                img_person.src = "./img/person.png"
 
-            let p_title = document.createElement("p")
-            p_title.className = 'title'
-            p_title.textContent = debt.nameto + '---->' + debt.name
-            console.log("name",debt.name )
-            console.log("nameTO",debt.nameto)
+                let p_title = document.createElement("p")
+                p_title.className = 'title'
+                p_title.textContent = debt.nameto + '---->' + debt.name
+                console.log("name",debt.name )
+                console.log("nameTO",debt.nameto)
 
-            let p_amount = document.createElement("p")
-            p_amount.className = "debt_content"
-            p_amount.textContent = debt.amount.toString() + '$'
+                let p_amount = document.createElement("p")
+                p_amount.className = "debt_content"
+                p_amount.textContent = debt.amount.toString() + '$'
 
-            let button_settle_up = document.createElement("button")
-            button_settle_up.className = "btn_edit"
-            button_settle_up.textContent = "Setle Up"
-            button_settle_up.setAttribute("id", count + "_debt")
-            button_settle_up.setAttribute("onClick", "setle_debt(this.id)")
-            button_settle_up.setAttribute("data-translate", "settle-up")
+                let button_settle_up = document.createElement("button")
+                button_settle_up.className = "btn_edit"
+                button_settle_up.textContent = "Settle Up"
+                button_settle_up.setAttribute("id", count + "_debt")
+                button_settle_up.setAttribute("onClick", "setle_debt(this.id)")
+                button_settle_up.setAttribute("data-translate", "settle-up")
 
 
 
-            div_left.appendChild(img_person)
-            div_right.appendChild(p_title)
-            div_right.appendChild(p_amount)
-            div_right.appendChild(button_settle_up)
+                div_left.appendChild(img_person)
+                div_right.appendChild(p_title)
+                div_right.appendChild(p_amount)
+                div_right.appendChild(button_settle_up)
 
-            li.appendChild(div_left)
-            li.appendChild(div_right)
+                li.appendChild(div_left)
+                li.appendChild(div_right)
 
-            ul.appendChild(li)
-            let split = localStorage.getItem('split')
-            console.log("split in main", split)
+                ul.appendChild(li)
+                let split = localStorage.getItem('split')
+                console.log("split in main", split)
+            }
             count = count + 1
         }
     }

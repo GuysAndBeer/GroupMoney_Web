@@ -90,10 +90,16 @@ body {
 	border-radius: 5px;
 }
 
+@media screen and (max-width: 900px) {
+	.info-login{
+		font-size: 20px;
+	}
+}
+
+
 .info-login:hover{
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-
 
 .footer__inner{
 	display: flex;
@@ -113,10 +119,12 @@ body {
 
 
 .copy{
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	background-color: white;
-
+	border: none;
+	align-items: center;
+	cursor: pointer;
 }
 
 .right { float: right; }
@@ -137,8 +145,7 @@ body {
 }
 
 .budget {
-    position: absolute;
-	position: relative;
+  position: absolute;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -149,8 +156,17 @@ body {
 }
 
 .budget-title {
-    font-size: 46px;
+    font-size: 40px;
     margin-bottom: 10px;
+	white-space: nowrap;
+	overflow: auto;
+}
+
+.budget-expenses-value{
+	white-space: nowrap;
+	overflow: auto;
+	width: 100px;
+	font-size: 15px;
 }
 
 
@@ -192,6 +208,12 @@ body {
 .budget-expenses-title,
 .budget-expenses-count {
     font-size: 13px;
+
+}
+
+.tabs__body{
+	margin-bottom: 20px;
+	position: relative;
 }
 
 .tabs__body{
@@ -419,12 +441,28 @@ body {
 	margin-bottom: 10px;
 }
 
+.or{
+	color: white;
+}
+
+.column{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.column > *:not(:last-child){
+	margin-bottom: 10px;
+}
+
 .choose_group:hover{
 	background: #8B0000;
 }
 
 .view_item .btn_edit, .btn_delete{
-	width: 125px;
+	width: 100px;
 	background: #404040;
 	color: #fff;
 	border: 1px solid #404040;
@@ -659,6 +697,22 @@ body {
 	height: 50px;
 }
 
+.choosebutton2{
+	background-color: transparent;
+	color: white;
+	border: 1px solid #4d4d4d;
+	width: 80%;
+	height: 30px;
+	padding-top: 15px;
+
+}
+
+.choosebutton2:hover{
+	background-color: #303030;
+	cursor: pointer;
+}
+
+
 .choosebutton:hover{
 	background-color: #303030;
 	cursor: pointer;
@@ -666,7 +720,7 @@ body {
 
 .or{
 	margin: 30px 0 30px 0;
-	font-size: 10px;
+	font-size: 20px;
 }
 
 .green{
@@ -703,3 +757,35 @@ body {
 	width: 100%;
 	height: 40px;
 }
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+@media screen and (max-width: 900px) {
+	.header__logo {
+		font-size: 15px;
+		font-weight: 500;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.budget-title {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.choose__form{
+		width: 100%;
+	}
+}
+
+
+@media (max-width: 600px){
+.view_item img{
+	max-width: 35px;
+}
+}
+

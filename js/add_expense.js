@@ -25,6 +25,20 @@ function add_expense(group){
 	let amount_field = document.getElementById("amount")
 	let amount = parseInt(amount_field.value)
 
+	if (amount>=10000){
+		alert("Your amount shouldn't be more than 10000$")
+	}
+	if (amount<0){
+		alert("Your amount shouldn't be less then 0$")
+	}
+	if (!Number.isInteger(amount)){
+		alert("Your amount should be integer")
+	}
+	if (amount==0){
+		alert("Your amount should be more then 1$")
+		return;
+	}
+
 
 	// if(amount == null && edit_index != ""){
 	// 	amount = expense.amount
@@ -52,7 +66,9 @@ function add_expense(group){
       		split_users.push(members[i])
       		if (document.getElementById("input_" + i).value === ""){
       			current_group.netAmt[i] = current_group.netAmt[i] - parseInt(document.getElementById("input_" + i).placeholder)
-      			debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
+
+				debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
+
       			sum = sum + parseInt(document.getElementById("input_" + i).placeholder)
       		}
       		else{
@@ -172,19 +188,6 @@ function add_expense(group){
 	console.log("split_users!!!!",split_users)
 }
 
-let save_image_button = document.getElementById("add_file")
-
-save_image_button.addEventListener('click', function(){
-	let selectedFile = document.getElementById('myFile').files[0]
-    //if (!selectedFile.type.startsWith('img/')){ return }
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        const base64String = reader.result
-        console.log("we save base64", base64String)
-        localStorage.setItem("uploadedUrl", JSON.stringify(base64String));
-    };
-    reader.readAsDataURL(selectedFile);
-});
 
 function split_equally(){
 	let amount_input = document.getElementById('amount');
@@ -202,7 +205,10 @@ function split_equally(){
 
   	let result = amount / count;
 
-  	alert(result)
+	if(!Number.isInteger(result)){
+		alert("Can't split equally")
+		return;
+	}
 
   	for (let i = 0;i < rad.length; i++) {
     	if (rad[i].checked) {
@@ -219,28 +225,30 @@ function delete_expense(ind){
 
 	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
 
-	let members = group[0].members
-	let netAmt = group[0].netAmt
 
-
-	for (let i = 0; i < members.length; i++)
-	{
-		if (members[i] == expenses[index].who_paid){
-			netAmt[i] = netAmt[i] - parseInt(expenses[index].amount)
-		}
-
-		if (expenses[index].users.includes(members[i])) 
-		{
-			netAmt[i] = netAmt[i] + parseInt(expenses[index].amount)
-		}
-	}
+	// let members = group[0].members
+	// let netAmt = group[0].netAmt
+	//
+	//
+	// for (let i = 0; i < members.length; i++)
+	// {
+	// 	if (members[i] == expenses[index].who_paid){
+	// 		netAmt[i] = netAmt[i] - parseInt(expenses[index].amount)
+	// 	}
+	//
+	// 	if (expenses[index].users.includes(members[i]))
+	// 	{
+	// 		netAmt[i] = netAmt[i] + parseInt(expenses[index].amount)
+	// 	}
+	// }
 
 	firebase.database().ref('Transaction/').child(current_group_id).child(expenses[index].key).remove();
 
-	firebase.database().ref('groups/').child(current_group_id).update({
-		members: members,
-		netAmt: netAmt
-	})
+	// firebase.database().ref('groups/').child(current_group_id).update({
+	// 	members: members,
+	// 	netAmt: netAmt
+	// })
+
 
 	//localStorage.setItem("budget_income", JSON.stringify(budget_income));
 	//localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
@@ -266,7 +274,7 @@ function add_member(group){
 		alert("Input is empty cant add member")
 		return;
 	}
-	
+
 	members.push(member)
 	if(current_group.netAmt != null){
 		current_group.netAmt.push(0)
@@ -298,11 +306,11 @@ function setle_debt(ind){
 
 	for(let i = 0; i < members.length; i++){
 		if (members[i] === debts[debt_index].name) {
-			netAmt[i] += debts[debt_index].amount
+			netAmt[i] -= debts[debt_index].amount
 		}
 
 		if (members[i] === debts[debt_index].nameto) {
-			netAmt[i] -= debts[debt_index].amount
+			netAmt[i] += debts[debt_index].amount
 		}
 	}
 
@@ -320,33 +328,50 @@ function setle_debt(ind){
 	window.location.href = "./main.html"
 }
 
-function delete_member(index){
-	let member_index = parseInt(index[0])
- 	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
- 	console.log("sds", current_group_id)
- 	//let current_group = group[0]
- 	let members = group[0].members
- 	let netAmt = group[0].netAmt
 
- 	for(expense of expenses)
- 	{
- 		if (expense.users.includes(members[member_index]) || expense.who_paid.includes(members[member_index]))
- 		{
- 			delete_mem = true
- 			alert("Member can not be deleted because it is used in expenses")
- 			return;
- 		}
- 	}
+// // function delete_member(index){
+// // 	let member_index = parseInt(index[0])
+// //  	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+// //  	console.log("sds", current_group_id)
+// //  	//let current_group = group[0]
+// //  	let members = group[0].members
+// //  	let netAmt = group[0].netAmt
+// //
+// //
+// //  	for(expense of expenses)
+// //  	{
+// //  		if (expense.users.includes(members[member_index]) || expense.who_paid.includes(members[member_index]))
+// //  		{
+// //  			delete_mem = true
+// //  			alert("Member can not be deleted because it is used in expenses")
+// //  			return;
+// //  		}
+// //  	}
+// //
+// // 	for(debt of debts)
+// // 	{
+// // 		if (debt.name.includes(members[member_index]) || debt.nameTo.includes(members[member_index]))
+// // 		{
+// // 			delete_mem = true
+// // 			alert("Member can not be deleted because it is used in debts")
+// // 			return;
+// // 		}
+// // 	}
+//
+//
+//
+//
+//
+//  	members.splice(members.indexOf(members[member_index]), 1)
+//  	netAmt.splice(netAmt.indexOf(netAmt[member_index]), 1)
+//
+//  	firebase.database().ref('groups/').child(current_group_id).update({
+// 		members: members,
+// 		netAmt: netAmt
+// 	})
+//  	window.location.href = "./main.html"
+// }
 
- 	members.splice(members.indexOf(members[member_index]), 1)
- 	netAmt.splice(netAmt.indexOf(netAmt[member_index]), 1)
-
- 	firebase.database().ref('groups/').child(current_group_id).update({
-		members: members,
-		netAmt: netAmt
-	})
- 	window.location.href = "./main.html"
-}
 
 
 

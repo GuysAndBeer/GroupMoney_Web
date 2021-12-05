@@ -2,6 +2,9 @@ let modalBtn = document.querySelector('.add_expense');
 let editBtn = document.querySelector('.edit_expense')
 let addmemberBtn = document.querySelector('.add_member');
 let copyBtn = document.querySelector('.copy');
+
+let deleteBtn = document.querySelector('#delete_group_btn');
+
 let splitBtn = document.querySelector('.share_equally');
 let tabs = document.querySelector('.tab_name');
 let tabs2 = document.querySelector('.tab_name2');
@@ -24,13 +27,25 @@ copyBtn.addEventListener('click', function(event) {
   alert("Copied the text: " + current_group_id);
 });
 
+
+deleteBtn.addEventListener('click', function (event) {
+	if (confirm('Are you sure you want to delete this group?')) {
+		let current_group_id = JSON.parse(localStorage.getItem("group_id"))
+		firebase.database().ref('groups/').child(current_group_id).remove();
+		localStorage.clear()
+		window.location.href = "./choose_group.html"
+	} else {
+	}
+})
+
 modalBtn.addEventListener('click', function(){
-	// let members = current_group.members
-	// if (members.length < 2)
-	// {
-	// 	alert("Add at least one member to add transaction")
-	// 	return;
-	// }
+	let members = group[0].members
+	if (!members || members.length < 2)
+	{
+		alert("Add at least two members to add transaction")
+		return;
+	}
+
 	modalBg.classList.add('bg-active');
 	tabs.classList.add('tabs_unactive');
 	tabs2.classList.add('tabs_unactive');
@@ -140,7 +155,8 @@ function fill_modal(group){
 
 		let counter = document.getElementById("split_modal").childElementCount;
 
-		if (counter < members.length + 2) {
+
+		if (counter < members.length +1) {
 			div_radio = document.createElement("div")
 			div_radio.className = "radio"
 			let x = document.createElement("INPUT");
@@ -154,7 +170,9 @@ function fill_modal(group){
 	  	label_input.setAttribute("for", "radio_" + a)
 	  	input_value = document.createElement("input")
 	  	input_value.className = "am_input"
-	  	input_value.setAttribute("type", "value");
+	  	input_value.setAttribute("type", "number");
+	  	input_value.setAttribute("min", "0");
+	  	input_value.setAttribute("step", "1");
 	  	input_value.setAttribute("name", "amount_input");
 	  	input_value.setAttribute("placeholder", "0$");
 	  	input_value.setAttribute("id", "input_" + a);

@@ -25,6 +25,12 @@
 							SplitwiseClone
 						</a>
 						<div class="header__items" id="authorisation">
+
+							<div class="lang-menu">
+								<button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
+								<button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+							</div>
+
 						</div>
 					</div>
 					<div class="line"></div>
@@ -35,23 +41,28 @@
 				<div class="top container">
 					<div class="budget">
 						<div class="budget-title" id="user_dashboard">
-							Username
+
+
 						</div>
-						<button class="copy"><img src="./img/copy-solid.svg" width="50" height="50" alt="copy"></button>
-						<div class="buttons__flex">
-							<a class="choose_group" href="./choose_group.html">Choose group</a>
+						<div class = "row">
+							<button class="copy"><img src="./img/copy-solid.svg" alt="copy"></button>
+							<div class="buttons__flex">
+								<a class="choose_group" href="./choose_group.html" data-translate="choose_group">Choose group</a>
+							</div>
+							<button class="copy" id="delete_group_btn"><img src="./img/trash-alt-solid.svg" alt="delete"></button>
 						</div>
 						
 						<div class="budget-income">
-							<div class="budget-income-title">Groups</div>
+							<div class="budget-income-title" data-translate="group">Groups</div>
 							<div class="right">
-								<div class="budget-income-value" id="budget_income">2</div>
+								<div class="budget-income-value" id="budget_income"></div>
 							</div>
 						</div>
 						<div class="budget-expenses">
-							<div class="budget-expenses-title">Current group</div>
+							<div class="budget-expenses-title" data-translate="current_group">Current group</div>
 							<div class="right">
-								<div class="budget-expenses-value" id="budget_expenses">2</div>
+								<div class="budget-expenses-value" id="budget_expenses"></div>
+
 							</div>
 						</div>
 					</div>
@@ -105,7 +116,8 @@
 								</select>
 							</div>
 							<label class="amount" for="amount">Amount</label>
-							<input type="value" name="amount" class="amount_input" id="amount" placeholder="0$">
+
+							<input type="number" step="1" min="0" name="amount" class="amount_input" id="amount" placeholder="0$">
 							<label for="concept" class="concept">Concept</label>
 							<input type="text" name="concept" class="concept_input" id="concept" placeholder="Expense name">
 							<label for="category-select" class="category">Category</label>
@@ -118,9 +130,11 @@
 							</div>
 							<label for="shared" class="shared">Shared</label>
 							<button class="share_equally" id="shared" onclick="split_equally()">SHARE EQUALY</button>
-							<label for="myFile" class="add_receipt">Add Receipt</label>
-							<input type="file" id="myFile" name="filename" class="file">
-							<button class="button_file" id="add_file">Save receipt</button>
+
+<!--							<label for="myFile" class="add_receipt">Add Receipt</label>-->
+<!--							<input type="file" id="myFile" name="filename" class="file">-->
+<!--							<button class="button_file" id="add_file">Save receipt</button>-->
+
 							<button class="save" id="save_expense">Save</button>
 							<span class="modal-close">X</span>
 						</div>
@@ -128,7 +142,7 @@
 			
 					<div class="split_modal" id="split_modal">
 						<h2 class="title">Choose split method</h2>
-						<button class="save" >Save</button>
+
 					</div>
 			
 				</div>
@@ -146,14 +160,16 @@
 			</main>
 		</div>
 
-		<footer class="footer" id="footer">
-			<div class="container">
-				<div class="footer__inner">
-					<div class="footer__title">Guys and Beer 2021</div>
-					<div class="footer__info">@Copyright reserved</div>
-				</div>
-			</div>
-		</footer>
+
+<!--		<footer class="footer" id="footer">-->
+<!--			<div class="container">-->
+<!--				<div class="footer__inner">-->
+<!--					<div class="footer__title">Guys and Beer 2021</div>-->
+<!--					<div class="footer__info">@Copyright reserved</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</footer>-->
+
 	</div>
 			
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

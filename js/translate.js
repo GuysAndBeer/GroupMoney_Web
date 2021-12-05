@@ -1,4 +1,49 @@
 let dictionary = {
+        'group': {
+            'en': 'GROUPS',
+            'ru': 'ГРУППЫ'
+        },
+
+        'delete': {
+            'en': 'Delete',
+            'ru': 'Удалить'
+        },
+
+        'settle-up': {
+            'en': 'Settle Up',
+            'ru': 'Рассчитать'
+        },
+
+        'current_group': {
+            'en': 'CURRENT GROUP',
+            'ru': 'ТЕКУЩАЯ ГРУППА'
+        },
+
+        'choose_group': {
+            'en': 'Choose group',
+            'ru': 'Выберите группу'
+        },
+
+        'select_group': {
+            'en': 'Select group',
+            'ru': 'Выберите группы'
+        },
+
+        'or': {
+            'en': 'or',
+            'ru': 'или'
+        },
+
+        'create_group': {
+            'en': 'Create new group',
+            'ru': 'Добавить новую группу'
+        },
+
+        'join_group': {
+            'en': 'Join group',
+            'ru': 'Присоединится к группе'
+        },
+
         'greet': {
             'en': 'To start with splitapp firts sign in',
             'ru': 'Для того чтобы начать работу необходимо авторизоваться'

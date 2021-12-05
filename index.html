@@ -15,14 +15,16 @@
         <header class="header">
             <div class="container">
                 <div class="header__inner">
-                    <a href="./main.html" class="header__logo">
+                    <a href="./index.html" class="header__logo">
                         SplitwiseClone
                     </a>
                     <div class="header__items" id="authorisation">
                         <a href="./login.html">Sign In</a>
                         <div class="lang-menu">
-                            <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en"></button>
-                            <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru"></button>
+
+                            <button class="btn" onclick="change_lang()"><img src="./img/united-kingdom.svg" alt="en" id="eng"></button>
+                            <button class="btn" onclick="change_lang()"><img src="./img/russia.svg" alt="ru" id="rus"></button>
+
                         </div>
                     </div>
                 </div>
@@ -32,7 +34,7 @@
         <main class="main">
             <div class="info">
                 <div class="info__item">
-                    <p data-translate="greet">To start with splitapp firts sign in </p>
+                    <p data-translate="greet">To start with splitapp first sign in </p>
                 </div>
                 <div class="info__item">
                     <a class="info-login" data-translate="login" href="./login.html">Sign In</a>

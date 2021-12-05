@@ -66,5 +66,49 @@ function selectGroup(index){
 }
 
 
+function auth(){
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+
+            current_name = user.displayName
+            current_email = user.email
+
+            let nav = document.getElementById("authorisation")
+
+            if(!current_email){
+                let a = document.createElement("a")
+                a.textContent = "Sign In"
+                a.href = "login.html"
+                a.className = "navlink"
+                nav.appendChild(a)
+            }else {
+                let a = document.createElement("a")
+                a.textContent = current_email
+                a.className = "navlink"
+                nav.appendChild(a)
+                a = document.createElement("a")
+                a.textContent = "Log out"
+                a.href = "index.html"
+                a.className = "nav__link"
+                a.onclick = logout
+                nav.appendChild(a)
+            }
+
+        } else {
+            window.location.href = "./index.html"
+        }
+    });
+}
+
+function logout(){
+    localStorage.setItem("current_user", JSON.stringify("none"));
+}
+
+
+
+//localStorage.clear()
+auth()
 readFirebase(groups)
-setTimeout(checkGroups, 3000, groups);
+
+setTimeout(checkGroups, 2000, groups);
+

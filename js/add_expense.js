@@ -24,6 +24,7 @@ function add_expense(group){
 
 	let amount_field = document.getElementById("amount")
 	let amount = parseInt(amount_field.value)
+
 	if (amount>=10000){
 		alert("Your amount shouldn't be more than 10000$")
 	}
@@ -65,7 +66,9 @@ function add_expense(group){
       		split_users.push(members[i])
       		if (document.getElementById("input_" + i).value === ""){
       			current_group.netAmt[i] = current_group.netAmt[i] - parseInt(document.getElementById("input_" + i).placeholder)
+
 				debt_amount.push(parseInt(document.getElementById("input_" + i).placeholder))
+
       			sum = sum + parseInt(document.getElementById("input_" + i).placeholder)
       		}
       		else{
@@ -222,6 +225,7 @@ function delete_expense(ind){
 
 	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
 
+
 	// let members = group[0].members
 	// let netAmt = group[0].netAmt
 	//
@@ -244,6 +248,7 @@ function delete_expense(ind){
 	// 	members: members,
 	// 	netAmt: netAmt
 	// })
+
 
 	//localStorage.setItem("budget_income", JSON.stringify(budget_income));
 	//localStorage.setItem("budget_expenses", JSON.stringify(budget_expenses));
@@ -323,6 +328,7 @@ function setle_debt(ind){
 	window.location.href = "./main.html"
 }
 
+
 // // function delete_member(index){
 // // 	let member_index = parseInt(index[0])
 // //  	let current_group_id = JSON.parse(localStorage.getItem("group_id"))
@@ -365,6 +371,7 @@ function setle_debt(ind){
 // 	})
 //  	window.location.href = "./main.html"
 // }
+
 
 
 

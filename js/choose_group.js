@@ -109,4 +109,6 @@ function logout(){
 //localStorage.clear()
 auth()
 readFirebase(groups)
+
 setTimeout(checkGroups, 2000, groups);
+

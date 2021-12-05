@@ -18,13 +18,17 @@ function auth(){
             let count_groups = JSON.parse(localStorage.getItem("count_groups"))
             let group_name = JSON.parse(localStorage.getItem("group_name"))
 
+
             if(!current_email){
+
                 let a = document.createElement("a")
                 a.textContent = "Sign In"
                 a.href = "login.html"
                 a.className = "nav__link"
                 nav.appendChild(a)
+
                 window.location.href = "./index.html"
+
             }else {
                 budget_income_field.textContent = count_groups
                 budget_expenses_field.textContent = group_name
@@ -43,7 +47,9 @@ function auth(){
             }
 
         } else {
+
             window.location.href = "./index.html"
+
         }
     });
 }
@@ -93,6 +99,7 @@ function readCurrentDebts(debts){
 
 
 
+
 auth()
 readCurrentGroup(group)
 readCurrentTransactions(expenses)
@@ -139,12 +146,14 @@ function loadMembers(group){
 
         p_amount.textContent = current_group.netAmt[i] + '$'
 
+
         // button_delete = document.createElement("button")
         // button_delete.className = "btn_delete"
         // button_delete.textContent = "Delete"
         // button_delete.setAttribute("id", i)
         // button_delete.setAttribute("onClick", "delete_member(this.id)")
         // button_delete.setAttribute("data-translate", "delete")
+
 
         div_left.appendChild(img_person)
         div_right.appendChild(p_title)
@@ -326,6 +335,7 @@ function loadDebts(debts){
                 let split = localStorage.getItem('split')
                 console.log("split in main", split)
             }
+
             count = count + 1
         }
     }

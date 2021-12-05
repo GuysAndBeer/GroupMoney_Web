@@ -97,11 +97,9 @@ body {
 }
 
 
-
 .info-login:hover{
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-
 
 .footer__inner{
 	display: flex;
@@ -147,7 +145,7 @@ body {
 }
 
 .budget {
-	position: relative;
+  position: absolute;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -211,6 +209,11 @@ body {
 .budget-expenses-count {
     font-size: 13px;
 
+}
+
+.tabs__body{
+	margin-bottom: 20px;
+	position: relative;
 }
 
 .tabs__body{
@@ -785,3 +788,4 @@ body {
 	max-width: 35px;
 }
 }
+
